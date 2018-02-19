@@ -42,11 +42,11 @@ def setDevice(id, state):
             else:
                 widget.config(bg = 'red')
         if desktopState:
-            desktopSwitch.config(text = 'OFF')
+            desktopSwitch.config(text = 'OFF', fg = 'black')
             desktopStatus.config(text = 'ON', fg = 'black')
             desktopLabel.config(fg = 'black')
         else:
-            desktopSwitch.config(text='ON')
+            desktopSwitch.config(text='ON', fg = 'white')
             desktopStatus.config(text = 'OFF', fg = 'white')
             desktopLabel.config(fg = 'white')
     elif id == 2:
@@ -58,11 +58,11 @@ def setDevice(id, state):
             else:
                 widget.config(bg = 'red')
         if mgState:
-            mgSwitch.config(text = 'OFF')
+            mgSwitch.config(text = 'OFF', fg = 'black')
             mgStatus.config(text = 'ON', fg = 'black')
             mgLabel.config(fg = 'black')
         else:
-            mgSwitch.config(text='ON')
+            mgSwitch.config(text='ON', fg = 'white')
             mgStatus.config(text = 'OFF', fg = 'white')
             mgLabel.config(fg = 'white')
     elif id == 3:
@@ -74,11 +74,11 @@ def setDevice(id, state):
             else:
                 widget.config(bg = 'red')
         if ledState:
-            ledSwitch.config(text='OFF')
+            ledSwitch.config(text='OFF', fg = 'black')
             ledStatus.config(text = 'ON', fg = 'black')
             ledLabel.config(fg = 'black')
         else:
-            ledSwitch.config(text='ON')
+            ledSwitch.config(text='ON', fg = 'white')
             ledStatus.config(text = 'OFF', fg = 'white')
             ledLabel.config(fg = 'white')
     elif id == 4:
@@ -90,11 +90,11 @@ def setDevice(id, state):
             else:
                 widget.config(bg = 'red')
         if v12State:
-            v12Switch.config(text='OFF')
+            v12Switch.config(text='OFF', fg = 'black')
             v12Status.config(text = 'ON', fg = 'black')
             v12Label.config(fg = 'black')
         else:
-            v12Switch.config(text='ON')
+            v12Switch.config(text='ON', fg = 'white')
             v12Status.config(text = 'OFF', fg = 'white')
             v12Label.config(fg = 'white')
 
@@ -110,12 +110,12 @@ def switchV12():
         else:
             widget.config(bg = 'red')
     if v12State:
-        v12Switch.config(text='OFF')
+        v12Switch.config(text='OFF', fg = 'black')
         v12Status.config(text = 'ON', fg = 'black')
         v12Label.config(fg = 'black')
         writeSerial('41')
     else:
-        v12Switch.config(text='ON')
+        v12Switch.config(text='ON', fg = 'white')
         v12Status.config(text = 'OFF', fg = 'white')
         v12Label.config(fg = 'white')
         writeSerial('40')
@@ -129,12 +129,12 @@ def switchDesktop():
         else:
             widget.config(bg = 'red')
     if desktopState:
-        desktopSwitch.config(text='OFF')
+        desktopSwitch.config(text='OFF', fg = 'black')
         desktopStatus.config(text = 'ON', fg = 'black')
         desktopLabel.config(fg = 'black')
         writeSerial('11')
     else:
-        desktopSwitch.config(text='ON')
+        desktopSwitch.config(text='ON', fg = "white")
         desktopStatus.config(text = 'OFF', fg = 'white')
         desktopLabel.config(fg = 'white')
         writeSerial('10')
@@ -148,12 +148,12 @@ def switchMg():
         else:
             widget.config(bg = 'red')
     if mgState:
-        mgSwitch.config(text='OFF')
+        mgSwitch.config(text='OFF', fg = 'black')
         mgStatus.config(text = 'ON', fg = 'black')
         mgLabel.config(fg = 'black')
         writeSerial('21')
     else:
-        mgSwitch.config(text='ON')
+        mgSwitch.config(text='ON', fg = 'white')
         mgStatus.config(text = 'OFF', fg = 'white')
         mgLabel.config(fg = 'white')
         writeSerial('20')
@@ -167,12 +167,12 @@ def switchLed():
         else:
             widget.config(bg = 'red')
     if ledState:
-        ledSwitch.config(text='OFF')
+        ledSwitch.config(text='OFF', fg = 'black')
         ledStatus.config(text = 'ON', fg = 'black')
         ledLabel.config(fg = 'black')
         writeSerial('31')
     else:
-        ledSwitch.config(text='ON')
+        ledSwitch.config(text='ON', fg = 'white')
         ledStatus.config(text = 'OFF', fg = 'white')
         ledLabel.config(fg = 'white')
         writeSerial('30')
@@ -186,11 +186,11 @@ def switchDoorLed():
         else:
             widget.config(bg = 'red')
     if doorLedState:
-        doorLedSwitch.config(text = 'OFF')
+        doorLedSwitch.config(text = 'OFF', fg = 'black')
         doorLedStatus.config(text = 'ON', fg = 'black')
         doorLedLabel.config(fg = 'black')
     else:
-        doorLedSwitch.config(text = 'ON')
+        doorLedSwitch.config(text = 'ON', fg = 'white')
         doorLedStatus.config(text = 'OFF', fg = 'white')
         doorLedLabel.config(fg = 'white')
 
