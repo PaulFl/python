@@ -220,13 +220,13 @@ clockLabel.pack(fill = 'both', expand = False)
 v12 = tk.Frame(lights, bg = 'green')
 v12.pack(fill='both', expand = True)
 
-v12Label = tk.Label(v12, text = "12V Output", bg = 'green')
+v12Label = tk.Label(v12, text = "12V Output", bg = 'green', font=('Arial', 30))
 v12Label.pack(fill='both', expand = True)
 
-v12Status = tk.Label(v12, text = 'ON', bg = 'green')
+v12Status = tk.Label(v12, text = 'ON', bg = 'green', font=('Arial', 30))
 v12Status.pack(fill='both', expand = True)
 
-v12Switch = tk.Button(v12, text = 'OFF', bg = 'green', command=switchV12)
+v12Switch = tk.Button(v12, text = 'OFF', bg = 'green', command=switchV12, font=('Arial', 30))
 v12Switch.pack(fill='both', expand = True)
 
 
