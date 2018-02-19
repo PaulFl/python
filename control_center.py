@@ -220,80 +220,81 @@ clockLabel.pack(fill = 'both', expand = False)
 v12 = tk.Frame(lights, bg = 'green')
 v12.pack(fill='both', expand = True)
 
-v12Label = tk.Label(v12, text = "12V Output", bg = 'green', font=('Arial', 30))
+v12Label = tk.Label(v12, text = "12V Output", bg = 'green', font=('Arial', 25))
 v12Label.pack(fill='both', expand = True)
 
-v12Status = tk.Label(v12, text = 'ON', bg = 'green', font=('Arial', 30))
+v12Status = tk.Label(v12, text = 'ON', bg = 'green', font=('Arial', 25))
 v12Status.pack(fill='both', expand = True)
 
-v12Switch = tk.Button(v12, text = 'OFF', bg = 'green', command=switchV12, font=('Arial', 30))
+v12Switch = tk.Button(v12, text = 'OFF', bg = 'green', command=switchV12, font=('Arial', 25))
 v12Switch.pack(fill='both', expand = True)
 
 
 desktop = tk.Frame(lights, bg = 'green')
 desktop.pack(fill='both', expand = True)
 
-desktopLabel = tk.Label(desktop, text = "Desktop", bg = 'green')
+desktopLabel = tk.Label(desktop, text = "Desktop", bg = 'green', font=('Arial', 25))
 desktopLabel.pack(fill='both', expand = True)
 
-desktopStatus = tk.Label(desktop, text = 'ON', bg = 'green')
+desktopStatus = tk.Label(desktop, text = 'ON', bg = 'green', font=('Arial', 25))
 desktopStatus.pack(fill='both', expand = True)
 
-desktopSwitch = tk.Button(desktop, text = 'OFF', bg = 'green', command=switchDesktop)
+desktopSwitch = tk.Button(desktop, text = 'OFF', bg = 'green', command=switchDesktop, font=('Arial', 25))
 desktopSwitch.pack(fill='both', expand = True)
 
 mg = tk.Frame(lights, bg = 'green')
 mg.pack(fill='both', expand = True)
-mgLabel = tk.Label(mg, text = "Magnifying glass", bg = 'green')
+
+mgLabel = tk.Label(mg, text = "Magnifying glass", bg = 'green', font=('Arial', 25))
 mgLabel.pack(fill='both', expand = True)
 
-mgStatus = tk.Label(mg, text = 'ON', bg = 'green')
+mgStatus = tk.Label(mg, text = 'ON', bg = 'green', font=('Arial', 25))
 mgStatus.pack(fill='both', expand = True)
 
-mgSwitch = tk.Button(mg, text = 'OFF', bg = 'green', command=switchMg)
+mgSwitch = tk.Button(mg, text = 'OFF', bg = 'green', command=switchMg, font=('Arial', 25))
 mgSwitch.pack(fill='both', expand = True)
 
 led = tk.Frame(lights, bg = 'green')
 led.pack(fill='both', expand = True)
 
-ledLabel = tk.Label(led, text = "LEDs", bg = 'green')
+ledLabel = tk.Label(led, text = "LEDs", bg = 'green', font=('Arial', 25))
 ledLabel.pack(fill='both', expand = True)
 
-ledStatus = tk.Label(led, text = 'ON', bg = 'green')
+ledStatus = tk.Label(led, text = 'ON', bg = 'green', font=('Arial', 25))
 ledStatus.pack(fill='both', expand = True)
 
 ledSliders = tk.Frame(led, bg = 'green')
 ledSliders.pack(fill = 'both', expand = True)
 
 redValue = tk.DoubleVar()
-ledRedSlider = tk.Scale(ledSliders, variable = redValue, bg = 'red')
+ledRedSlider = tk.Scale(ledSliders, variable = redValue, bg = 'red', font=('Arial', 25))
 ledRedSlider.config(from_ = 255, to = 0)
 ledRedSlider.pack(side = 'left', fill = 'both', expand = True)
 
 greenValue = tk.DoubleVar()
-ledGreenSlider = tk.Scale(ledSliders, variable = greenValue, bg = 'green')
+ledGreenSlider = tk.Scale(ledSliders, variable = greenValue, bg = 'green', font=('Arial', 25))
 ledGreenSlider.config(from_ = 255, to = 0)
 ledGreenSlider.pack(side = 'left', fill = 'both', expand = True)
 
 blueValue = tk.DoubleVar()
-ledBlueSlider = tk.Scale(ledSliders, variable = blueValue, bg = 'blue')
+ledBlueSlider = tk.Scale(ledSliders, variable = blueValue, bg = 'blue', font=('Arial', 25))
 ledBlueSlider.config(from_ = 255, to = 0)
 ledBlueSlider.pack(side = 'left', fill = 'both', expand = True)
 
 
-ledSwitch = tk.Button(led, text = 'OFF', bg = 'green', command=switchLed)
+ledSwitch = tk.Button(led, text = 'OFF', bg = 'green', command=switchLed, font=('Arial', 25))
 ledSwitch.pack(fill='both', expand = True)
 
 doorLed = tk.Frame(lights, bg = "green")
 doorLed.pack(fill = 'both', expand = True)
 
-doorLedLabel = tk.Label(doorLed, text = "Door LED", bg = 'green')
+doorLedLabel = tk.Label(doorLed, text = "Door LED", bg = 'green', font=('Arial', 25))
 doorLedLabel.pack(fill = 'both', expand = True)
 
-doorLedStatus = tk.Label(doorLed, text = 'ON', bg = 'green')
+doorLedStatus = tk.Label(doorLed, text = 'ON', bg = 'green', font=('Arial', 25))
 doorLedStatus.pack(fill = 'both', expand = True)
 
-doorLedSwitch = tk.Button(doorLed, text = 'OFF', bg = 'green', command=switchDoorLed)
+doorLedSwitch = tk.Button(doorLed, text = 'OFF', bg = 'green', command=switchDoorLed, font=('Arial', 25))
 doorLedSwitch.pack(fill = 'both', expand = True)
 
 
@@ -303,22 +304,22 @@ clockDisplay.pack(fill='both', expand= True)
 doorPosition = tk.Frame(sensors, bg = 'green')
 doorPosition.pack(fill = 'both', expand = True)
 
-doorPositionLabel = tk.Label(doorPosition, text = "Door status", bg = 'green')
+doorPositionLabel = tk.Label(doorPosition, text = "Door status", bg = 'green', font=('Arial', 25))
 doorPositionLabel.pack(fill = 'both', expand = True)
 
-doorPositionStatus = tk.Label(doorPosition, text = 'OPEN', bg = 'green')
+doorPositionStatus = tk.Label(doorPosition, text = 'OPEN', bg = 'green', font=('Arial', 25))
 doorPositionStatus.pack(fill = 'both', expand = True)
 
 canStatus = tk.Frame(sensors, bg = 'red')
 canStatus.pack(fill = 'both', expand = True)
 
-canStatusLabel = tk.Label(canStatus, text = "Can status", bg = 'red', fg = 'white')
+canStatusLabel = tk.Label(canStatus, text = "Can status", bg = 'red', fg = 'white', font=('Arial', 25))
 canStatusLabel.pack(fill = 'both', expand = True)
 
-canStatusValue = tk.Label(canStatus, text = 'NULL', bg = 'red', fg = 'white')
+canStatusValue = tk.Label(canStatus, text = 'NULL', bg = 'red', fg = 'white', font=('Arial', 25))
 canStatusValue.pack(fill = 'both', expand = True)
 
-canStatusStatus = tk.Label(canStatus, text = 'NOT TOUCHED', bg = 'red', fg = 'white')
+canStatusStatus = tk.Label(canStatus, text = 'NOT TOUCHED', bg = 'red', fg = 'white', font=('Arial', 25))
 canStatusStatus.pack(fill = 'both', expand = True)
 
 
