@@ -28,9 +28,25 @@ def readSerial():
     if (ser.inWaiting() > 3):
         line = ser.read(ser.inWaiting()).decode()
         id = int(line[0])
-        state = bool(int(line[1]))
-        setDevice(id, state)
+        if (id == 1 or id == 2 or id==3 or id == 4):
+            state = bool(int(line[1]))
+            setDevice(id, state)
+        elif (id == 5 or id == 6 or id == 7 or id == 8):
+            value = int(line[1:])
+            setDeviceValue(id, value)
     clockDisplay.after(100, readSerial)
+
+def setDevicevalue(id, value):
+    if id == 5:
+        ledRedSlider.set(value)
+    elif id == 6:
+        ledGreenSlider.set(value)
+    elif id == 7:
+        ledBlueSlider.set(value)
+    elif id == 8:
+        canStatusLabel.config(text = str(value))
+        
+        
     
 def setDevice(id, state):
     if id == 1:
