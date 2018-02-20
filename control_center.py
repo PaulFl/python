@@ -4,7 +4,7 @@ import tkinter as tk
 import time
 import serial
 
-ser = serial.Serial(port='/dev/ttyUSB0', timeout = 0)
+ser = serial.Serial(port='/dev/arduino', timeout = 0)
 
 time1 = ''
 
