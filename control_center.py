@@ -28,13 +28,16 @@ def tick():
     clockDisplay.after(200, tick)
 
 def processLine(line):
-    id = int(line[0])
+    if(line[0] != '\n'):
+        id = int(line[0])
     if (id == 1 or id == 2 or id==3 or id == 4 or id == 9):
-        state = bool(int(line[1]))
-        setDevice(id, state)
-   # elif (id == 5 or id == 6 or id == 7 or id == 8):
-    #    value = int(line[1:])
-     #   setDeviceValue(id, value)
+        if(line[1:]!='\n'):
+            state=bool(int(line[1:]))
+            setDevice(id, state)
+    elif (id == 5 or id == 6 or id == 7 or id == 8):
+        if(line[1:]!='\n'):
+            value=int(line[1:])
+            setDeviceValue(id, value)
 
     
 def readSerial():
@@ -43,10 +46,10 @@ def readSerial():
         line = ser.read(ser.inWaiting()).decode()
         while line.find('\n') != -1:
             i = line.find('\n')
-            serLine += line[:i]
-            processLine(line)
+            serLine += line[:i-1]
+            interpretLine(serLine)
             serLine = ''
-            line = line[i+2:]
+            line = line[i+1:]
     clockDisplay.after(100, readSerial)
 
 def setDevicevalue(id, value):
