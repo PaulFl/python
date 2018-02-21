@@ -25,6 +25,8 @@ def tick():
     time2 = time.strftime('%H:%M:%S')
     if time2 != time1:
         time1 = time2
+        clockDate1.config(text = time.strftime("%D"))
+        clockDate2.config(text = time.strftime("%a, %d %a"))
         clockDisplay.config(text=time2)
     clockDisplay.after(200, tick)
 
@@ -350,8 +352,13 @@ doorLedStatus.pack(fill = 'both', expand = True)
 doorLedSwitch = tk.Button(doorLed, text = 'OFF', bg = 'green', command=switchDoorLed, font=('Arial', 25))
 doorLedSwitch.pack(fill = 'both', expand = True)
 
+clockDate2 = tk.Label(clock, font=('Arial', 45), fg = 'white', bg = 'black')
+clockDate2.pack(fill = 'both', expand = True)
 
-clockDisplay = tk.Label(clock, font=('Arial', 60), fg = 'white', bg = 'black')
+clockDate1 = tk.Label(clock, font=('Arial', 68), fg = 'white', bg = 'black')
+clockDate1.pack(fill = 'both', expand = True)
+
+clockDisplay = tk.Label(clock, font=('Arial', 68), fg = 'white', bg = 'black')
 clockDisplay.pack(fill='both', expand= True)
 
 doorPosition = tk.Frame(sensors, bg = 'green')
