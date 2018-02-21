@@ -1,10 +1,13 @@
 #!/usr/bin/python3
 
 import tkinter as tk
+from tkinter import ttk
 import time
 import serial
 
 ser = serial.Serial(port='/dev/arduino', timeout = 0)
+
+serLine = ''
 
 time1 = ''
 
@@ -14,6 +17,7 @@ ledState = True
 doorLedState = True
 doorState = True
 v12State = True
+canState = False
 
 def tick():
     global time1
@@ -23,17 +27,25 @@ def tick():
         clockDisplay.config(text=time2)
     clockDisplay.after(200, tick)
 
+def processLine(line):
+    id = int(line[0])
+    if (id == 1 or id == 2 or id==3 or id == 4 or id == 9):
+        state = bool(int(line[1]))
+        setDevice(id, state)
+    elif (id == 5 or id == 6 or id == 7 or id == 8):
+        value = int(line[1:])
+        setDeviceValue(id, value)
+
     
 def readSerial():
-    if (ser.inWaiting() > 3):
+    if ser.inWaiting()>0:
         line = ser.read(ser.inWaiting()).decode()
-        id = int(line[0])
-        if (id == 1 or id == 2 or id==3 or id == 4):
-            state = bool(int(line[1]))
-            setDevice(id, state)
-        elif (id == 5 or id == 6 or id == 7 or id == 8):
-            value = int(line[1:])
-            setDeviceValue(id, value)
+        while line.find('\n') != -1:
+            i = line.find('\n')
+            serLine += line[:i]
+            processLine(line)
+            serLine = ''
+            line = line[i+1:]
     clockDisplay.after(100, readSerial)
 
 def setDevicevalue(id, value):
@@ -113,6 +125,22 @@ def setDevice(id, state):
             v12Switch.config(text='ON', fg = 'white')
             v12Status.config(text = 'OFF', fg = 'white')
             v12Label.config(fg = 'white')
+    elif id == 9:
+        global canState
+        canState = state
+        for widget in [canStatus, canStatusStatus, canStatusLabel, canStatusValue]:
+            if ledState:
+                widget.config(bg = 'green')
+            else:
+                widget.config(bg = 'red')
+        if canState:
+            canStatusStatus.config(text = 'TOUCHED', fg = 'black')
+            canStatusValue.config(fg = 'black')
+            canStatusLabel.config(fg = 'black')
+        else:
+            canStatusStatus.config(text = 'NOT TOUCHED', fg = 'white')
+            canStatusValue.config(fg = 'white')
+            canStatusLabel.config(fg = 'white')
 
 def writeSerial(line):
     ser.write((line + '\n').encode('utf-8'))
