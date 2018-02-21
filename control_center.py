@@ -32,12 +32,13 @@ def processLine(line):
     if (id == 1 or id == 2 or id==3 or id == 4 or id == 9):
         state = bool(int(line[1]))
         setDevice(id, state)
-    elif (id == 5 or id == 6 or id == 7 or id == 8):
-        value = int(line[1:])
-        setDeviceValue(id, value)
+   # elif (id == 5 or id == 6 or id == 7 or id == 8):
+    #    value = int(line[1:])
+     #   setDeviceValue(id, value)
 
     
 def readSerial():
+    global serLine
     if ser.inWaiting()>0:
         line = ser.read(ser.inWaiting()).decode()
         while line.find('\n') != -1:
@@ -45,7 +46,7 @@ def readSerial():
             serLine += line[:i]
             processLine(line)
             serLine = ''
-            line = line[i+1:]
+            line = line[i+2:]
     clockDisplay.after(100, readSerial)
 
 def setDevicevalue(id, value):
