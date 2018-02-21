@@ -19,6 +19,7 @@ doorState = True
 v12State = True
 canState = False
 
+
 def tick():
     global time1
     time2 = time.strftime('%H:%M:%S')
@@ -28,17 +29,20 @@ def tick():
     clockDisplay.after(200, tick)
 
 def processLine(line):
-    if(line[0] != '\n'):
-        id = int(line[0])
-    if (id == 1 or id == 2 or id==3 or id == 4 or id == 9):
-        if(line[1:]!='\n'):
-            state=bool(int(line[1:]))
-            setDevice(id, state)
-    elif (id == 5 or id == 6 or id == 7 or id == 8):
-        if(line[1:]!='\n'):
-            value=int(line[1:])
-            setDeviceValue(id, value)
-
+    if(len(line)>2):
+        if(line[0] =='a'):
+            line = line[1:]
+            if(line.find('a') == -1):
+                if(line[0] != '\n'):
+                    id = int(line[0])
+                    if (id == 1 or id == 2 or id==3 or id == 4 or id == 9):
+                        if(line[1:]!='\n'):
+                            state=bool(int(line[1:]))
+                            setDevice(id, state)
+                    elif (id == 5 or id == 6 or id == 7 or id == 8):
+                        if(line[1:]!='\n'):
+                            value=int(line[1:])
+                            setDeviceValue(id, value)
     
 def readSerial():
     global serLine
@@ -47,12 +51,12 @@ def readSerial():
         while line.find('\n') != -1:
             i = line.find('\n')
             serLine += line[:i-1]
-            interpretLine(serLine)
+            processLine(serLine)
             serLine = ''
             line = line[i+1:]
     clockDisplay.after(100, readSerial)
 
-def setDevicevalue(id, value):
+def setDeviceValue(id, value):
     if id == 5:
         ledRedSlider.set(value)
     elif id == 6:
@@ -60,7 +64,8 @@ def setDevicevalue(id, value):
     elif id == 7:
         ledBlueSlider.set(value)
     elif id == 8:
-        canStatusLabel.config(text = str(value))
+        canStatusValue.config(text = str(abs(value)))
+        canBarValue.set(abs(value))
         
         
     
@@ -244,7 +249,7 @@ def switchDoorLed():
 
 window = tk.Tk()
 window.title("Control Center")
-
+canBarValue = tk.IntVar()
 pwindow = tk.PanedWindow(window, orient='horizontal')
 
 lights = tk.Frame(window)
@@ -363,6 +368,9 @@ canStatus.pack(fill = 'both', expand = True)
 
 canStatusLabel = tk.Label(canStatus, text = "Can status", bg = 'red', fg = 'white', font=('Arial', 25))
 canStatusLabel.pack(fill = 'both', expand = True)
+
+canStatusBar = ttk.Progressbar(canStatus, variable = canBarValue, maximum = 30000, orient = 'vertical')
+canStatusBar.pack()
 
 canStatusValue = tk.Label(canStatus, text = 'NULL', bg = 'red', fg = 'white', font=('Arial', 25))
 canStatusValue.pack(fill = 'both', expand = True)
