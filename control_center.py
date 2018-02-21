@@ -377,7 +377,7 @@ canStatusLabel = tk.Label(canStatus, text = "Can status", bg = 'red', fg = 'whit
 canStatusLabel.pack(fill = 'both', expand = True)
 
 canStatusBar = ttk.Progressbar(canStatus, variable = canBarValue, maximum = 30000, orient = 'vertical')
-canStatusBar.pack()
+canStatusBar.pack(fill = 'both', expand = True)
 
 canStatusValue = tk.Label(canStatus, text = 'NULL', bg = 'red', fg = 'white', font=('Arial', 25))
 canStatusValue.pack(fill = 'both', expand = True)
