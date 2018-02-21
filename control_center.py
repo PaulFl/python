@@ -25,8 +25,8 @@ def tick():
     time2 = time.strftime('%H:%M:%S')
     if time2 != time1:
         time1 = time2
-        clockDate1.config(text = time.strftime("%D"))
-        clockDate2.config(text = time.strftime("%a, %d %a"))
+        clockDate1.config(text = time.strftime("%d/%m/%y"))
+        clockDate2.config(text = time.strftime("%a, %d %b"))
         clockDisplay.config(text=time2)
     clockDisplay.after(200, tick)
 
