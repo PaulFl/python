@@ -4,6 +4,7 @@ import tkinter as tk
 from tkinter import ttk
 import time
 import serial
+import requests
 
 ser = serial.Serial(port='/dev/arduino', timeout = 0)
 
@@ -19,6 +20,13 @@ doorState = True
 v12State = True
 canState = False
 
+def updatWeather():
+    r = requests.get("http://api.openweathermap.org/data/2.5/weather?q=Baulne,fr&appid=aecef374984aecf5c205fb2d974115ac")
+    temp = float(r.json()['main']['temp'])
+    temp -= 273.15
+    temp = round(temp, 1)
+    temperature.config(text = "Temp: " + str(temp)+"°C")
+    clockDisplay.after(1800, updateWeather)
 
 def tick():
     global time1
@@ -355,6 +363,9 @@ doorLedSwitch.pack(fill = 'both', expand = True)
 clockDate2 = tk.Label(clock, font=('Arial', 45), fg = 'white', bg = 'black')
 clockDate2.pack(fill = 'both', expand = True)
 
+temperature = tk.Label(clock, font = ('Arial', 35), fg = 'white', bg = 'black')
+temperature.pack(fill = 'both', expand = True)
+
 clockDate1 = tk.Label(clock, font=('Arial', 68), fg = 'white', bg = 'black')
 clockDate1.pack(fill = 'both', expand = True)
 
@@ -393,5 +404,6 @@ switchDesktop()
 switchMg()
 readSerial()
 tick()
+updateWeather()
 
 window.mainloop()
