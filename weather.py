@@ -4,4 +4,4 @@ r = requests.get("http://api.openweathermap.org/data/2.5/weather?q=Baulne,fr&app
 temp = float(r.json()['main']['temp'])
 temp -= 273.15
 temp = round(temp, 1)
-print(temp)
+print(r.json())

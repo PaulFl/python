@@ -26,6 +26,8 @@ def updateWeather():
     temp -= 273.15
     temp = round(temp, 1)
     temperature.config(text = "Temp: " + str(temp)+"°C")
+    pressureValue = int(r.json()['main']['pressure'])
+    pressure.config(text = "Pressure: " + str(pressureValue)+"hPa")
     clockDisplay.after(1800*1000, updateWeather)
 
 def tick():
@@ -365,6 +367,9 @@ clockDate2.pack(fill = 'both', expand = True)
 
 temperature = tk.Label(clock, font = ('Arial', 35), fg = 'white', bg = 'black')
 temperature.pack(fill = 'both', expand = True)
+
+pressure = tk.Label(clock, font = 'Arial', 35), fg = 'white', bg = 'black')
+pressure.pack(fill = 'both', expand = True)
 
 clockDate1 = tk.Label(clock, font=('Arial', 68), fg = 'white', bg = 'black')
 clockDate1.pack(fill = 'both', expand = True)
