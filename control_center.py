@@ -27,7 +27,11 @@ def updateWeather():
     temp = round(temp, 1)
     temperature.config(text = "Temp: " + str(temp)+"°C")
     pressureValue = int(r.json()['main']['pressure'])
-    pressure.config(text = "Pressure: " + str(pressureValue)+"hPa")
+    pressure.config(text = "Press: " + str(pressureValue)+"hPa")
+    windValue = float(r.json()['wind']['speed'])
+    windValue *= 1,94384
+    windValue = round(windValue, 1)
+    wind.config(text = "Wind: " + str(windValue) + "kts")
     clockDisplay.after(1800*1000, updateWeather)
 
 def tick():
@@ -370,6 +374,12 @@ temperature.pack(fill = 'both', expand = True)
 
 pressure = tk.Label(clock, font = ('Arial', 35), fg = 'white', bg = 'black')
 pressure.pack(fill = 'both', expand = True)
+
+wind = tk.Label(clock, font = ('Arial', 35), fg = 'white', bg = 'black')
+wind.pack(fill = 'both', expand = True)
+
+sun = tk.Label(clock, font = ('Arial', 35), fg = 'white', bg = 'black')
+sun.pack(fill = 'both', expand = True)
 
 clockDate1 = tk.Label(clock, font=('Arial', 68), fg = 'white', bg = 'black')
 clockDate1.pack(fill = 'both', expand = True)
