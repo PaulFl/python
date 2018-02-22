@@ -29,7 +29,7 @@ def updateWeather():
     pressureValue = int(r.json()['main']['pressure'])
     pressure.config(text = "Press: " + str(pressureValue)+"hPa")
     windValue = float(r.json()['wind']['speed'])
-    windValue *= 1,94384
+    windValue *= 1.94384
     windValue = round(windValue, 1)
     wind.config(text = "Wind: " + str(windValue) + "kts")
     clockDisplay.after(1800*1000, updateWeather)
