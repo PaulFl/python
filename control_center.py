@@ -35,7 +35,7 @@ def updateWeather():
     wind.config(text = "Wind: " + str(windValue) + "kts")
     sunRise = datetime.datetime.fromtimestamp(r.json()['sys']['sunrise']).strftime('%H:%M')
     sunSet = datetime.datetime.fromtimestamp(r.json()['sys']['sunset']).strftime('%H:%M')
-    sun.config(text = "Sun\n"+sunRise+"	   "+sunSet)
+    sun.config(text = "Sun\n"+sunRise+"   "+sunSet)
     clockDisplay.after(1800*1000, updateWeather)
 
 def tick():
@@ -423,6 +423,6 @@ switchDesktop()
 switchMg()
 readSerial()
 tick()
-clockDisplay.after(30000, updateWeather)
+clockDisplay.after(10000, updateWeather)
 
 window.mainloop()
