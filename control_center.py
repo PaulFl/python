@@ -5,6 +5,7 @@ from tkinter import ttk
 import time
 import serial
 import requests
+import datetime
 
 ser = serial.Serial(port='/dev/arduino', timeout = 0)
 
@@ -32,6 +33,9 @@ def updateWeather():
     windValue *= 1.94384
     windValue = round(windValue, 1)
     wind.config(text = "Wind: " + str(windValue) + "kts")
+    sunRise = datetime.datetime.fromtimestamp(r.json()['sys']['sunrise']).strftime('%H:%M')
+    sunSet = datetime.datetime.fromtimestamp(r.json()['sys']['sunset']).strftime('%H:%M')
+    sun.config(text = "Sun\n"+sunRise+"	   "+sunSet)
     clockDisplay.after(1800*1000, updateWeather)
 
 def tick():
