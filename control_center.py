@@ -20,13 +20,13 @@ doorState = True
 v12State = True
 canState = False
 
-def updatWeather():
+def updateWeather():
     r = requests.get("http://api.openweathermap.org/data/2.5/weather?q=Baulne,fr&appid=aecef374984aecf5c205fb2d974115ac")
     temp = float(r.json()['main']['temp'])
     temp -= 273.15
     temp = round(temp, 1)
     temperature.config(text = "Temp: " + str(temp)+"°C")
-    clockDisplay.after(1800, updateWeather)
+    clockDisplay.after(1800*1000, updateWeather)
 
 def tick():
     global time1
@@ -404,6 +404,6 @@ switchDesktop()
 switchMg()
 readSerial()
 tick()
-updateWeather()
+clockDisplay.after(30000, updateWeather)
 
 window.mainloop()
