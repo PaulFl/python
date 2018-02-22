@@ -287,7 +287,7 @@ lightsLabel.pack(fill='both', expand = False)
 sensorsLabel = tk.Label(sensors, text = 'Sensors', font=('Arial', 50))
 sensorsLabel.pack(fill = 'both', expand = False)
 
-clockLabel = tk.Label(clock, text = 'Clock', font=('Arial', 50))
+clockLabel = tk.Label(clock, text = 'Control', font=('Arial', 50))
 clockLabel.pack(fill = 'both', expand = False)
 
 v12 = tk.Frame(lights, bg = 'green')
