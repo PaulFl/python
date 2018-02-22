@@ -368,7 +368,7 @@ clockDate2.pack(fill = 'both', expand = True)
 temperature = tk.Label(clock, font = ('Arial', 35), fg = 'white', bg = 'black')
 temperature.pack(fill = 'both', expand = True)
 
-pressure = tk.Label(clock, font = 'Arial', 35), fg = 'white', bg = 'black')
+pressure = tk.Label(clock, font = ('Arial', 35), fg = 'white', bg = 'black')
 pressure.pack(fill = 'both', expand = True)
 
 clockDate1 = tk.Label(clock, font=('Arial', 68), fg = 'white', bg = 'black')
