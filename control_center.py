@@ -385,10 +385,10 @@ wind.pack(fill = 'both', expand = True)
 sun = tk.Label(clock, font = ('Arial', 35), fg = 'white', bg = 'black')
 sun.pack(fill = 'both', expand = True)
 
-clockDate1 = tk.Label(clock, font=('Arial', 68), fg = 'white', bg = 'black')
+clockDate1 = tk.Label(clock, font=('Arial', 72), fg = 'white', bg = 'black')
 clockDate1.pack(fill = 'both', expand = True)
 
-clockDisplay = tk.Label(clock, font=('Arial', 68), fg = 'white', bg = 'black')
+clockDisplay = tk.Label(clock, font=('Arial', 72), fg = 'white', bg = 'black')
 clockDisplay.pack(fill='both', expand= True)
 
 doorPosition = tk.Frame(sensors, bg = 'green')
