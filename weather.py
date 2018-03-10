@@ -5,3 +5,4 @@ temp = float(r.json()['main']['temp'])
 temp -= 273.15
 temp = round(temp, 1)
 print(r.json())
+print(r.json()['weather'][0]['main'])

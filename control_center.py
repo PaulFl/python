@@ -23,6 +23,8 @@ canState = False
 
 def updateWeather():
     r = requests.get("http://api.openweathermap.org/data/2.5/weather?q=Baulne,fr&appid=aecef374984aecf5c205fb2d974115ac")
+    weatherValue = r.json()['weather'][0]['main']
+    weatherMain.config(text = weatherValue)
     temp = float(r.json()['main']['temp'])
     temp -= 273.15
     temp = round(temp, 1)
@@ -373,6 +375,9 @@ doorLedSwitch.pack(fill = 'both', expand = True)
 clockDate2 = tk.Label(clock, font=('Arial', 45), fg = 'white', bg = 'black')
 clockDate2.pack(fill = 'both', expand = True)
 
+weatherMain = tk.Label(clock, font = ('Arial', 35), fg = 'white', bg = 'black')
+weatherMain.pack(fill = 'both', expand = True)
+
 temperature = tk.Label(clock, font = ('Arial', 35), fg = 'white', bg = 'black')
 temperature.pack(fill = 'both', expand = True)
 
@@ -421,6 +426,7 @@ pwindow.pack(fill='both', expand = True)
 
 switchDesktop()
 switchMg()
+switchV12()
 readSerial()
 tick()
 clockDisplay.after(10000, updateWeather)
