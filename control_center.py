@@ -6,6 +6,14 @@ import time
 import serial
 import requests
 import datetime
+import RPi.GPIO as gpio
+
+gpio.setmode(gpio.BCM)
+
+k1pin = 16
+k2pin = 19
+k3pin = 20
+k4pin = 26
 
 ser = serial.Serial(port='/dev/arduino', timeout = 0)
 
@@ -20,6 +28,31 @@ doorLedState = True
 doorState = True
 v12State = True
 canState = False
+
+def setDisplayBacklight(state):
+    gpio.setup(k1pin, gpio.OUT)
+    gpio.output(k1pin, 0)
+    time.sleep(0.3)
+    gpio.output(k1pin, 1)
+    time.sleep(0.3)
+    gpio.output(k1pin, 0)
+    time.sleep(0.3)
+    gpio.output(k1pin, 1)
+    time.sleep(0.3)
+    gpio.output(k1pin, 0)
+    time.sleep(0.3)
+    gpio.setup(k1pin, gpio.IN)
+    if state:
+        gpio.setup(k2pin, gpio.OUT)
+        gpio.output(k2pin, 0)
+        time.sleep(6)
+        gpio.setup(k2pin, gpio.IN)
+    else:
+        gpio.setup(k3pin, gpio.OUT)
+        gpio.output(k3pin, 0)
+        time.sleep(6)
+        gpio.setup(k3pin, gpio.IN)
+
 
 def updateWeather():
     r = requests.get("http://api.openweathermap.org/data/2.5/weather?q=Baulne,fr&appid=aecef374984aecf5c205fb2d974115ac")
