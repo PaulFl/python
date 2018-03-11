@@ -9,11 +9,18 @@ import datetime
 import RPi.GPIO as gpio
 
 gpio.setmode(gpio.BCM)
+gpio.setwarnings(0)
 
 k1pin = 16
 k2pin = 19
 k3pin = 20
 k4pin = 26
+
+doorSwitchPin = 12
+doorLedPin = 6
+
+gpio.setup(doorLedPin, gpio.OUT)
+gpio.setup(doorSwitchPin, gpio.IN, pull_up_down=gpio.PUD_UP)
 
 ser = serial.Serial(port='/dev/arduino', timeout = 0)
 
@@ -82,6 +89,13 @@ def tick():
         clockDate2.config(text = time.strftime("%a, %d %b"))
         clockDisplay.config(text=time2)
     clockDisplay.after(200, tick)
+    
+def updateDoor():
+    global doorState
+    state = gpio.input(doorSwitchPin)
+    if doorState != state:
+        switchDoor()
+    doorPosition.after(300, updateDoor)
 
 def processLine(line):
     if(len(line)>2):
@@ -246,6 +260,24 @@ def switchDesktop():
         desktopStatus.config(text = 'OFF', fg = 'white')
         desktopLabel.config(fg = 'white')
         writeSerial('10')
+        
+def switchDoor():
+    global doorState
+    global doorLedState
+    doorState = not doorState
+    for widget in [doorPosition, doorPositionLabel, doorPositionStatus]:
+        if doorState:
+            widget.config(bg = 'green')
+        else:
+            widget.config(bg = 'red')
+    if doorState:
+        doorPositionStatus.config(text = 'OPEN', fg = 'black')
+        doorPositionLabel.config(fg = 'black')
+    else:
+        doorPositionStatus.config(text = 'CLOSED', fg = 'white')
+        doorPositionLabel.config(fg = 'white')
+    doorLedState = doorState
+    switchDoorLed()
     
 def switchMg():
     global mgState
@@ -294,10 +326,12 @@ def switchDoorLed():
         else:
             widget.config(bg = 'red')
     if doorLedState:
+        gpio.output(doorLedPin, 1)
         doorLedSwitch.config(text = 'OFF', fg = 'black')
         doorLedStatus.config(text = 'ON', fg = 'black')
         doorLedLabel.config(fg = 'black')
     else:
+        gpio.output(doorLedPin, 0)
         doorLedSwitch.config(text = 'ON', fg = 'white')
         doorLedStatus.config(text = 'OFF', fg = 'white')
         doorLedLabel.config(fg = 'white')
@@ -462,6 +496,7 @@ switchMg()
 switchV12()
 readSerial()
 tick()
+updateDoor()
 clockDisplay.after(10000, updateWeather)
 
 window.mainloop()
