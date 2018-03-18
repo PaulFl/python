@@ -94,6 +94,12 @@ def updateDoor():
     global doorState
     state = gpio.input(doorSwitchPin)
     if doorState != state:
+        if (not doorState and state):
+            print('hey')
+            top = tk.Toplevel()
+            top.title('Door openned')
+            tk.Message(top, text = 'BONJOUR', pady = 500, font=('Arial', 250)).pack()
+            top.after(7000, top.destroy)
         switchDoor()
     doorPosition.after(300, updateDoor)
 
