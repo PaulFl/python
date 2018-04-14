@@ -7,6 +7,7 @@ import serial
 import requests
 import datetime
 import RPi.GPIO as gpio
+from soco import SoCo
 
 gpio.setmode(gpio.BCM)
 gpio.setwarnings(0)
@@ -24,6 +25,8 @@ gpio.setup(doorSwitchPin, gpio.IN, pull_up_down=gpio.PUD_UP)
 
 ser = serial.Serial(port='/dev/arduino', timeout = 0)
 
+sonos = SoCo("192.168.0.12")
+
 serLine = ''
 
 time1 = ''
@@ -35,6 +38,27 @@ doorLedState = True
 doorState = True
 v12State = True
 canState = False
+musicPlaying = False
+
+def getSonosInfo():
+    global musicPlaying
+    title = sonos.get_current_track_info()['title']
+    artist = sonos.get_current_track_info()['artist']
+    musicTitle.config(text = title + " - " + artist)
+    volume = sonos.volume
+    musicVolume.config(text = "Vol: "+str(volume))
+    musicPlaying = (sonos.get_current_transport_info()['current_transport_state'] == 'PLAYING')
+    if musicPlaying:
+        musicPlayPause.config(text = "Pause")
+    else:
+        musicPlayPause.config(text = "Play")
+    music.after(2000, getSonosInfo)
+    
+def sonosPlayPause():
+    if musicPlaying:
+        sonos.pause()
+    else:
+        sonos.play()
 
 def setDisplayBacklight(state):
     gpio.setup(k1pin, gpio.OUT)
@@ -98,7 +122,7 @@ def updateDoor():
             print('hey')
             top = tk.Toplevel()
             top.title('Door openned')
-            tk.Message(top, text = 'BONJOUR', pady = 500, font=('Arial', 250)).pack()
+            tk.Message(top, text = 'BONJOUR !', pady = 500, font=('Arial', 250)).pack()
             top.after(7000, top.destroy)
         switchDoor()
     doorPosition.after(300, updateDoor)
@@ -493,6 +517,31 @@ canStatusValue.pack(fill = 'both', expand = True)
 canStatusStatus = tk.Label(canStatus, text = 'NOT TOUCHED', bg = 'red', fg = 'white', font=('Arial', 25))
 canStatusStatus.pack(fill = 'both', expand = True)
 
+music = tk.Frame(sensors, bg = 'black')
+music.pack(fill = 'both', expand = True)
+
+musicLabel = tk.Label(music, text = "Music", bg = 'black', fg = "white", font=('Arial', 25))
+musicLabel.pack(fill = 'both', expand = True)
+
+musicTitle = tk.Label(music, text = "Title", bg = 'black', fg = "white", font = ('Arial', 20), wraplengt=220)
+musicTitle.pack(fill = 'both', expand = True)
+
+musicVolume = tk.Label(music, text = "Vol: ", bg = 'black', fg = 'white', font = ('Arial', 20))
+musicVolume.pack(fill = 'both', expand = True)
+
+musicControls = tk.Frame(music, bg = 'black')
+musicControls.pack(fill = 'both', expand = True)
+
+musicPrevious = tk.Button(musicControls, text = "<<", bg = "black", fg = "white", font = ('Arial', 25), command = sonos.previous)
+musicPrevious.pack(side = 'left', fill = 'both', expand = True)
+
+musicPlayPause = tk.Button(musicControls, text = "Play", bg = 'black', fg = "white", font = ('Arial', 25), command = sonosPlayPause)
+musicPlayPause.pack(side = 'left', fill = 'both', expand = True)
+
+musicNext = tk.Button(musicControls, text = ">>", bg = "black", fg = "white", font = ('Arial', 25), command = sonos.next)
+musicNext.pack(side = "left", fill = "both", expand = True)
+
+
 
 
 pwindow.pack(fill='both', expand = True)
@@ -503,6 +552,7 @@ switchV12()
 readSerial()
 tick()
 updateDoor()
-clockDisplay.after(10000, updateWeather)
+clockDisplay.after(1000, updateWeather)
+music.after(2000, getSonosInfo)
 
 window.mainloop()
