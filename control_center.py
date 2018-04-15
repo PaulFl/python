@@ -40,14 +40,40 @@ v12State = True
 canState = False
 musicPlaying = False
 
+def keydown(e):
+    key = e.keycode
+    if key == 65:
+        sonosPlayPause()
+    elif key == 114:
+        sonos.next()
+    elif key == 113:
+        sonos.previous()
+    elif key == 111:
+        sonos.ramp_to_volume(sonos.volume+1)
+    elif key == 116:
+        sonos.ramp_to_volume(sonos.volume-1)
+    elif key == 90:
+        switchDesktop()
+    elif key == 87:
+        switchV12()
+    elif key == 104:
+        switchMg()
+    elif key == 88:
+        switchLed()
+    elif key == 89:
+        switchDoorLed()
+    
+
 def getSonosInfo():
     global musicPlaying
-    title = sonos.get_current_track_info()['title']
-    artist = sonos.get_current_track_info()['artist']
-    musicTitle.config(text = title + " - " + artist)
+    musicPlaying = (sonos.get_current_transport_info()['current_transport_state'] == 'PLAYING')
+    if musicPlaying:
+        trackInfo = sonos.get_current_track_info()
+        title = trackInfo['title']
+        artist = trackInfo['artist']
+        musicTitle.config(text = title + " - " + artist)
     volume = sonos.volume
     musicVolume.config(text = "Vol: "+str(volume))
-    musicPlaying = (sonos.get_current_transport_info()['current_transport_state'] == 'PLAYING')
     if musicPlaying:
         musicPlayPause.config(text = "Pause")
     else:
@@ -542,9 +568,9 @@ musicNext = tk.Button(musicControls, text = ">>", bg = "black", fg = "white", fo
 musicNext.pack(side = "left", fill = "both", expand = True)
 
 
-
-
 pwindow.pack(fill='both', expand = True)
+
+window.bind('<KeyPress>', keydown)
 
 switchDesktop()
 switchMg()
