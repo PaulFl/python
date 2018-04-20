@@ -67,11 +67,11 @@ def keydown(e):
 def getSonosInfo():
     global musicPlaying
     musicPlaying = (sonos.get_current_transport_info()['current_transport_state'] == 'PLAYING')
-    if musicPlaying:
-        trackInfo = sonos.get_current_track_info()
-        title = trackInfo['title']
-        artist = trackInfo['artist']
-        musicTitle.config(text = title + " - " + artist)
+    #if musicPlaying:
+    trackInfo = sonos.get_current_track_info()
+    title = trackInfo['title']
+    artist = trackInfo['artist']
+    musicTitle.config(text = title + " - " + artist)
     volume = sonos.volume
     musicVolume.config(text = "Vol: "+str(volume))
     if musicPlaying:
@@ -394,6 +394,7 @@ def switchDoorLed():
 
 window = tk.Tk()
 window.title("Control Center")
+
 canBarValue = tk.IntVar()
 pwindow = tk.PanedWindow(window, orient='horizontal')
 
