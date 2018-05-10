@@ -8,6 +8,8 @@ import requests
 import datetime
 import RPi.GPIO as gpio
 from soco import SoCo
+from PIL import Image, ImageTk
+import urllib
 
 gpio.setmode(gpio.BCM)
 gpio.setwarnings(0)
@@ -26,6 +28,9 @@ gpio.setup(doorSwitchPin, gpio.IN, pull_up_down=gpio.PUD_UP)
 ser = serial.Serial(port='/dev/arduino', timeout = 0)
 
 sonos = SoCo("192.168.0.12")
+
+img = None
+musicPreviousTitle = ''
 
 serLine = ''
 
@@ -65,19 +70,28 @@ def keydown(e):
     
 
 def getSonosInfo():
+    global img
     global musicPlaying
+    global musicPreviousTitle
     musicPlaying = (sonos.get_current_transport_info()['current_transport_state'] == 'PLAYING')
     #if musicPlaying:
     trackInfo = sonos.get_current_track_info()
     title = trackInfo['title']
+    if (title != musicPreviousTitle):
+        musicPreviousTitle = title
+        img = ImageTk.PhotoImage(Image.open(urllib.request.urlopen(trackInfo['album_art'])))
+        musicArtwork.configure(image = img)
     artist = trackInfo['artist']
     musicTitle.config(text = title + " - " + artist)
+    musicPosition.config(text = trackInfo['position'] + ' - ' + trackInfo['duration'])
     volume = sonos.volume
     musicVolume.config(text = "Vol: "+str(volume))
+    
     if musicPlaying:
         musicPlayPause.config(text = "Pause")
     else:
         musicPlayPause.config(text = "Play")
+        musicArtwork.configure(image = None)
     music.after(2000, getSonosInfo)
     
 def sonosPlayPause():
@@ -552,6 +566,12 @@ musicLabel.pack(fill = 'both', expand = True)
 
 musicTitle = tk.Label(music, text = "Title", bg = 'black', fg = "white", font = ('Arial', 20), wraplengt=220)
 musicTitle.pack(fill = 'both', expand = True)
+
+musicArtwork = tk.Label(music)
+musicArtwork.pack(fill = 'both', expand = True)
+
+musicPosition = tk.Label(music, text = "-", bg = 'black', fg = "white", font = ('Arial', 20))
+musicPosition.pack(fill = 'both', expand = True)
 
 musicVolume = tk.Label(music, text = "Vol: ", bg = 'black', fg = 'white', font = ('Arial', 20))
 musicVolume.pack(fill = 'both', expand = True)
