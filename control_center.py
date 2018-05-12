@@ -6,8 +6,31 @@ import time
 import serial
 import requests
 import datetime
+import RPi.GPIO as gpio
+from soco import SoCo
+from PIL import Image, ImageTk
+import urllib
+
+gpio.setmode(gpio.BCM)
+gpio.setwarnings(0)
+
+k1pin = 16
+k2pin = 19
+k3pin = 20
+k4pin = 26
+
+doorSwitchPin = 12
+doorLedPin = 6
+
+gpio.setup(doorLedPin, gpio.OUT)
+gpio.setup(doorSwitchPin, gpio.IN, pull_up_down=gpio.PUD_UP)
 
 ser = serial.Serial(port='/dev/arduino', timeout = 0)
+
+sonos = SoCo("192.168.0.12")
+
+img = None
+musicPreviousTitle = ''
 
 serLine = ''
 
@@ -20,9 +43,92 @@ doorLedState = True
 doorState = True
 v12State = True
 canState = False
+musicPlaying = False
+
+def keydown(e):
+    key = e.keycode
+    if key == 65:
+        sonosPlayPause()
+    elif key == 114:
+        sonos.next()
+    elif key == 113:
+        sonos.previous()
+    elif key == 111:
+        sonos.ramp_to_volume(sonos.volume+1)
+    elif key == 116:
+        sonos.ramp_to_volume(sonos.volume-1)
+    elif key == 90:
+        switchDesktop()
+    elif key == 87:
+        switchV12()
+    elif key == 104:
+        switchMg()
+    elif key == 88:
+        switchLed()
+    elif key == 89:
+        switchDoorLed()
+    
+
+def getSonosInfo():
+    global img
+    global musicPlaying
+    global musicPreviousTitle
+    musicPlaying = (sonos.get_current_transport_info()['current_transport_state'] == 'PLAYING')
+    #if musicPlaying:
+    trackInfo = sonos.get_current_track_info()
+    title = trackInfo['title']
+    if (title != musicPreviousTitle):
+        musicPreviousTitle = title
+        img = ImageTk.PhotoImage(Image.open(urllib.request.urlopen(trackInfo['album_art'])))
+        musicArtwork.configure(image = img)
+    artist = trackInfo['artist']
+    musicTitle.config(text = title + " - " + artist)
+    musicPosition.config(text = trackInfo['position'] + ' - ' + trackInfo['duration'])
+    volume = sonos.volume
+    musicVolume.config(text = "Vol: "+str(volume))
+    
+    if musicPlaying:
+        musicPlayPause.config(text = "Pause")
+    else:
+        musicPlayPause.config(text = "Play")
+        musicArtwork.configure(image = None)
+    music.after(2000, getSonosInfo)
+    
+def sonosPlayPause():
+    if musicPlaying:
+        sonos.pause()
+    else:
+        sonos.play()
+
+def setDisplayBacklight(state):
+    gpio.setup(k1pin, gpio.OUT)
+    gpio.output(k1pin, 0)
+    time.sleep(0.3)
+    gpio.output(k1pin, 1)
+    time.sleep(0.3)
+    gpio.output(k1pin, 0)
+    time.sleep(0.3)
+    gpio.output(k1pin, 1)
+    time.sleep(0.3)
+    gpio.output(k1pin, 0)
+    time.sleep(0.3)
+    gpio.setup(k1pin, gpio.IN)
+    if state:
+        gpio.setup(k2pin, gpio.OUT)
+        gpio.output(k2pin, 0)
+        time.sleep(6)
+        gpio.setup(k2pin, gpio.IN)
+    else:
+        gpio.setup(k3pin, gpio.OUT)
+        gpio.output(k3pin, 0)
+        time.sleep(6)
+        gpio.setup(k3pin, gpio.IN)
+
 
 def updateWeather():
     r = requests.get("http://api.openweathermap.org/data/2.5/weather?q=Baulne,fr&appid=aecef374984aecf5c205fb2d974115ac")
+    weatherValue = r.json()['weather'][0]['main']
+    weatherMain.config(text = weatherValue)
     temp = float(r.json()['main']['temp'])
     temp -= 273.15
     temp = round(temp, 1)
@@ -47,6 +153,19 @@ def tick():
         clockDate2.config(text = time.strftime("%a, %d %b"))
         clockDisplay.config(text=time2)
     clockDisplay.after(200, tick)
+    
+def updateDoor():
+    global doorState
+    state = gpio.input(doorSwitchPin)
+    if doorState != state:
+        if (not doorState and state):
+            print('hey')
+            top = tk.Toplevel()
+            top.title('Door openned')
+            tk.Message(top, text = 'BONJOUR !', pady = 500, font=('Arial', 250)).pack()
+            top.after(7000, top.destroy)
+        switchDoor()
+    doorPosition.after(300, updateDoor)
 
 def processLine(line):
     if(len(line)>2):
@@ -211,6 +330,24 @@ def switchDesktop():
         desktopStatus.config(text = 'OFF', fg = 'white')
         desktopLabel.config(fg = 'white')
         writeSerial('10')
+        
+def switchDoor():
+    global doorState
+    global doorLedState
+    doorState = not doorState
+    for widget in [doorPosition, doorPositionLabel, doorPositionStatus]:
+        if doorState:
+            widget.config(bg = 'green')
+        else:
+            widget.config(bg = 'red')
+    if doorState:
+        doorPositionStatus.config(text = 'OPEN', fg = 'black')
+        doorPositionLabel.config(fg = 'black')
+    else:
+        doorPositionStatus.config(text = 'CLOSED', fg = 'white')
+        doorPositionLabel.config(fg = 'white')
+    doorLedState = doorState
+    switchDoorLed()
     
 def switchMg():
     global mgState
@@ -259,16 +396,19 @@ def switchDoorLed():
         else:
             widget.config(bg = 'red')
     if doorLedState:
+        gpio.output(doorLedPin, 1)
         doorLedSwitch.config(text = 'OFF', fg = 'black')
         doorLedStatus.config(text = 'ON', fg = 'black')
         doorLedLabel.config(fg = 'black')
     else:
+        gpio.output(doorLedPin, 0)
         doorLedSwitch.config(text = 'ON', fg = 'white')
         doorLedStatus.config(text = 'OFF', fg = 'white')
         doorLedLabel.config(fg = 'white')
 
 window = tk.Tk()
 window.title("Control Center")
+
 canBarValue = tk.IntVar()
 pwindow = tk.PanedWindow(window, orient='horizontal')
 
@@ -373,6 +513,9 @@ doorLedSwitch.pack(fill = 'both', expand = True)
 clockDate2 = tk.Label(clock, font=('Arial', 45), fg = 'white', bg = 'black')
 clockDate2.pack(fill = 'both', expand = True)
 
+weatherMain = tk.Label(clock, font = ('Arial', 35), fg = 'white', bg = 'black')
+weatherMain.pack(fill = 'both', expand = True)
+
 temperature = tk.Label(clock, font = ('Arial', 35), fg = 'white', bg = 'black')
 temperature.pack(fill = 'both', expand = True)
 
@@ -385,10 +528,10 @@ wind.pack(fill = 'both', expand = True)
 sun = tk.Label(clock, font = ('Arial', 35), fg = 'white', bg = 'black')
 sun.pack(fill = 'both', expand = True)
 
-clockDate1 = tk.Label(clock, font=('Arial', 68), fg = 'white', bg = 'black')
+clockDate1 = tk.Label(clock, font=('Arial', 72), fg = 'white', bg = 'black')
 clockDate1.pack(fill = 'both', expand = True)
 
-clockDisplay = tk.Label(clock, font=('Arial', 68), fg = 'white', bg = 'black')
+clockDisplay = tk.Label(clock, font=('Arial', 72), fg = 'white', bg = 'black')
 clockDisplay.pack(fill='both', expand= True)
 
 doorPosition = tk.Frame(sensors, bg = 'green')
@@ -415,14 +558,48 @@ canStatusValue.pack(fill = 'both', expand = True)
 canStatusStatus = tk.Label(canStatus, text = 'NOT TOUCHED', bg = 'red', fg = 'white', font=('Arial', 25))
 canStatusStatus.pack(fill = 'both', expand = True)
 
+music = tk.Frame(sensors, bg = 'black')
+music.pack(fill = 'both', expand = True)
+
+musicLabel = tk.Label(music, text = "Music", bg = 'black', fg = "white", font=('Arial', 25))
+musicLabel.pack(fill = 'both', expand = True)
+
+musicTitle = tk.Label(music, text = "Title", bg = 'black', fg = "white", font = ('Arial', 20), wraplengt=220)
+musicTitle.pack(fill = 'both', expand = True)
+
+musicArtwork = tk.Label(music)
+musicArtwork.pack(fill = 'both', expand = True)
+
+musicPosition = tk.Label(music, text = "-", bg = 'black', fg = "white", font = ('Arial', 20))
+musicPosition.pack(fill = 'both', expand = True)
+
+musicVolume = tk.Label(music, text = "Vol: ", bg = 'black', fg = 'white', font = ('Arial', 20))
+musicVolume.pack(fill = 'both', expand = True)
+
+musicControls = tk.Frame(music, bg = 'black')
+musicControls.pack(fill = 'both', expand = True)
+
+musicPrevious = tk.Button(musicControls, text = "<<", bg = "black", fg = "white", font = ('Arial', 25), command = sonos.previous)
+musicPrevious.pack(side = 'left', fill = 'both', expand = True)
+
+musicPlayPause = tk.Button(musicControls, text = "Play", bg = 'black', fg = "white", font = ('Arial', 25), command = sonosPlayPause)
+musicPlayPause.pack(side = 'left', fill = 'both', expand = True)
+
+musicNext = tk.Button(musicControls, text = ">>", bg = "black", fg = "white", font = ('Arial', 25), command = sonos.next)
+musicNext.pack(side = "left", fill = "both", expand = True)
 
 
 pwindow.pack(fill='both', expand = True)
 
+window.bind('<KeyPress>', keydown)
+
 switchDesktop()
 switchMg()
+switchV12()
 readSerial()
 tick()
-clockDisplay.after(10000, updateWeather)
+updateDoor()
+clockDisplay.after(1000, updateWeather)
+music.after(2000, getSonosInfo)
 
 window.mainloop()
