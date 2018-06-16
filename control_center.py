@@ -67,6 +67,10 @@ def keydown(e):
         switchLed()
     elif key == 89:
         switchDoorLed()
+    elif key == 86:
+	    window.attributes('-fullscreen', True)
+    elif key == 82:
+	    window.attributes('-fullscreen', False)
     
 
 def getSonosInfo():
@@ -601,5 +605,6 @@ tick()
 updateDoor()
 clockDisplay.after(1000, updateWeather)
 music.after(2000, getSonosInfo)
+
 
 window.mainloop()
