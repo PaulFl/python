@@ -3,7 +3,7 @@
 import tkinter as tk
 from tkinter import ttk
 import time
-from serial import serial
+import serial
 import requests
 import datetime
 from soco import SoCo
