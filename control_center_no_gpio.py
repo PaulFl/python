@@ -22,7 +22,7 @@ doorLedPin = 6
 
 
 
-ser = serial.Serial(port='/dev/arduino', timeout = 0)
+ser = serial.Serial(port='/dev/tty0', timeout = 0)
 
 sonos = SoCo("192.168.0.12")
 
@@ -133,6 +133,7 @@ def tick():
     
 def updateDoor():
     global doorState
+    state = True
     if doorState != state:
         if (not doorState and state):
             print('hey')
