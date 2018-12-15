@@ -27,7 +27,7 @@ gpio.setup(doorSwitchPin, gpio.IN, pull_up_down=gpio.PUD_UP)
 
 ser = serial.Serial(port='/dev/arduino', timeout = 0)
 
-sonos = SoCo("192.168.0.13")
+sonos = SoCo("192.168.0.230")
 
 img = None
 musicPreviousTitle = ''
@@ -597,9 +597,9 @@ pwindow.pack(fill='both', expand = True)
 
 window.bind('<KeyPress>', keydown)
 
-switchDesktop()
-switchMg()
-switchV12()
+#switchDesktop()
+#switchMg()
+#switchV12()
 readSerial()
 tick()
 updateDoor()
