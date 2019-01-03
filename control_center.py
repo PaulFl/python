@@ -10,7 +10,7 @@ import RPi.GPIO as gpio
 from soco import SoCo
 from PIL import Image, ImageTk
 import urllib
-from multiprocessing import Process
+from multiprocessing import Process, Queue
 
 gpio.setmode(gpio.BCM)
 gpio.setwarnings(0)
@@ -69,22 +69,33 @@ def keydown(e):
     elif key == 89:
         switchDoorLed()
     elif key == 86:
-	    window.attributes('-fullscreen', True)
+        window.attributes('-fullscreen', True)
     elif key == 82:
-	    window.attributes('-fullscreen', False)
+        window.attributes('-fullscreen', False)
 
 def callgetSonosInfo():
-    action_process = Process(target = getSonosInfo)
+    queue = Queue()
+    action_process = Process(target = getSonosInfo, args = (queue, ))
     action_process.start()
     action_process.join(timeout=5)
     action_process.terminate()
+    global musicPlaying
+    musicPlaying = queue.get()
+    musicTitle.config(text=queue.get())
+    musicPosition.config(text = queue.get())
+    musicVolume.config(text = queue.get())
+    if musicPlaying:
+        musicPlayPause.config(text = "Pause")
+    else:
+        musicPlayPause.config(text = "Play")
     music.after(2000, callgetSonosInfo)
 
-def getSonosInfo():
+def getSonosInfo(queue):
     #global img
-    global musicPlaying
+    #global musicPlaying
     #global musicPreviousTitle
     musicPlaying = (sonos.get_current_transport_info()['current_transport_state'] == 'PLAYING')
+    queue.put(musicPlaying)
     #if musicPlaying:
     trackInfo = sonos.get_current_track_info()
     title = trackInfo['title']
@@ -93,15 +104,18 @@ def getSonosInfo():
         #img = ImageTk.PhotoImage(Image.open(urllib.request.urlopen(trackInfo['album_art'])))
         #musicArtwork.configure(image = img)
     artist = trackInfo['artist']
-    musicTitle.config(text = title + " - " + artist)
-    musicPosition.config(text = trackInfo['position'] + ' - ' + trackInfo['duration'])
+    #musicTitle.config(text = title + " - " + artist)
+    queue.put(title + " - " + artist)
+    #musicPosition.config(text = trackInfo['position'] + ' - ' + trackInfo['duration'])
+    queue.put(trackInfo['position'] + ' - ' + trackInfo['duration'])
     volume = sonos.volume
-    musicVolume.config(text = "Vol: "+str(volume))
+    queue.put("Vol: "+str(volume))
+    #musicVolume.config(text = "Vol: "+str(volume))
     
-    if musicPlaying:
-        musicPlayPause.config(text = "Pause")
-    else:
-        musicPlayPause.config(text = "Play")
+#    if musicPlaying:
+#        musicPlayPause.config(text = "Pause")
+#    else:
+#        musicPlayPause.config(text = "Play")
         #musicArtwork.configure(image = None)
     
 def sonosPlayPause():
