@@ -10,6 +10,7 @@ import RPi.GPIO as gpio
 from soco import SoCo
 from PIL import Image, ImageTk
 import urllib
+from multiprocessing import Process
 
 gpio.setmode(gpio.BCM)
 gpio.setwarnings(0)
@@ -71,12 +72,18 @@ def keydown(e):
 	    window.attributes('-fullscreen', True)
     elif key == 82:
 	    window.attributes('-fullscreen', False)
-    
+
+def callgetSonosInfo():
+    action_process = Process(target = getSonosInfo)
+    action_process.start()
+    action_process.join(timeout=5)
+    action_process.terminate()
+    music.after(2000, callgetSonosInfo)
 
 def getSonosInfo():
     #global img
     global musicPlaying
-    global musicPreviousTitle
+    #global musicPreviousTitle
     musicPlaying = (sonos.get_current_transport_info()['current_transport_state'] == 'PLAYING')
     #if musicPlaying:
     trackInfo = sonos.get_current_track_info()
@@ -96,7 +103,6 @@ def getSonosInfo():
     else:
         musicPlayPause.config(text = "Play")
         #musicArtwork.configure(image = None)
-    music.after(2000, getSonosInfo)
     
 def sonosPlayPause():
     if musicPlaying:
@@ -604,7 +610,7 @@ readSerial()
 tick()
 updateDoor()
 clockDisplay.after(1000, updateWeather)
-music.after(2000, getSonosInfo)
+music.after(2000, callgetSonosInfo)
 
 
 window.mainloop()
