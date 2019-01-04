@@ -74,16 +74,27 @@ def keydown(e):
         window.attributes('-fullscreen', False)
 
 def callgetSonosInfo():
+#    global musicPlaying
+#    global musicPreviousTitle
     queue = Queue()
-    action_process = Process(target = getSonosInfo, args = (queue, ))
+    action_process = Process(target = getSonosInfo, args = (queue,  ))
     action_process.start()
     action_process.join(timeout=5)
     action_process.terminate()
     global musicPlaying
-    musicPlaying = queue.get()
-    musicTitle.config(text=queue.get())
-    musicPosition.config(text = queue.get())
-    musicVolume.config(text = queue.get())
+    if not queue.empty():
+        musicPlaying = queue.get()
+#    if not queue.empty():
+#        dat = queue.get()
+#        if not dat:
+#            musicPreviousTitle = dat[0]
+#            musicArtwork.configure(image = dat[1])
+    if not queue.empty():
+        musicTitle.config(text=queue.get())
+    if not queue.empty():
+        musicPosition.config(text = queue.get())
+    if not queue.empty():
+        musicVolume.config(text = queue.get())
     if musicPlaying:
         musicPlayPause.config(text = "Pause")
     else:
@@ -94,14 +105,18 @@ def getSonosInfo(queue):
     #global img
     #global musicPlaying
     #global musicPreviousTitle
+#    localMusicPreviousTitle = musicPreviousTitle
     musicPlaying = (sonos.get_current_transport_info()['current_transport_state'] == 'PLAYING')
     queue.put(musicPlaying)
     #if musicPlaying:
     trackInfo = sonos.get_current_track_info()
     title = trackInfo['title']
-    #if (title != musicPreviousTitle):
-        #musicPreviousTitle = title
-        #img = ImageTk.PhotoImage(Image.open(urllib.request.urlopen(trackInfo['album_art'])))
+#    if (title != localMusicPreviousTitle):
+#        localMusicPreviousTitle = title
+#        img = ImageTk.PhotoImage(Image.open(urllib.request.urlopen(trackInfo['album_art'])))
+#        queue.put((musicPreviousTitle, img))
+#    else:
+#        queue.put(False)
         #musicArtwork.configure(image = img)
     artist = trackInfo['artist']
     #musicTitle.config(text = title + " - " + artist)
@@ -183,7 +198,6 @@ def updateDoor():
     state = gpio.input(doorSwitchPin)
     if doorState != state:
         if (not doorState and state):
-            print('hey')
             top = tk.Toplevel()
             top.title('Door openned')
             tk.Message(top, text = 'BONJOUR !', pady = 500, font=('Arial', 250)).pack()
