@@ -9,6 +9,8 @@ import datetime
 from soco import SoCo
 from PIL import Image, ImageTk
 import urllib
+from multiprocessing import Process, Queue
+
 
 
 
@@ -68,32 +70,69 @@ def keydown(e):
 	    window.attributes('-fullscreen', True)
     elif key == 82:
 	    window.attributes('-fullscreen', False)
-    
 
-def getSonosInfo():
-    global img
+
+def callgetSonosInfo():
+    #    global musicPlaying
+    #    global musicPreviousTitle
+    queue = Queue()
+    action_process = Process(target=getSonosInfo, args=(queue,))
+    action_process.start()
+    action_process.join(timeout=5)
+    action_process.terminate()
     global musicPlaying
-    global musicPreviousTitle
+    if not queue.empty():
+        musicPlaying = queue.get()
+    #    if not queue.empty():
+    #        dat = queue.get()
+    #        if not dat:
+    #            musicPreviousTitle = dat[0]
+    #            musicArtwork.configure(image = dat[1])
+    if not queue.empty():
+        musicTitle.config(text=queue.get())
+    if not queue.empty():
+        musicPosition.config(text=queue.get())
+    if not queue.empty():
+        musicVolume.config(text=queue.get())
+    if musicPlaying:
+        musicPlayPause.config(text="Pause")
+    else:
+        musicPlayPause.config(text="Play")
+    music.after(2000, callgetSonosInfo)
+
+
+def getSonosInfo(queue):
+    # global img
+    # global musicPlaying
+    # global musicPreviousTitle
+    #    localMusicPreviousTitle = musicPreviousTitle
     musicPlaying = (sonos.get_current_transport_info()['current_transport_state'] == 'PLAYING')
-    #if musicPlaying:
+    queue.put(musicPlaying)
+    # if musicPlaying:
     trackInfo = sonos.get_current_track_info()
     title = trackInfo['title']
-    if (title != musicPreviousTitle):
-        musicPreviousTitle = title
-        img = ImageTk.PhotoImage(Image.open(urllib.request.urlopen(trackInfo['album_art'])))
-        musicArtwork.configure(image = img)
+    #    if (title != localMusicPreviousTitle):
+    #        localMusicPreviousTitle = title
+    #        img = ImageTk.PhotoImage(Image.open(urllib.request.urlopen(trackInfo['album_art'])))
+    #        queue.put((musicPreviousTitle, img))
+    #    else:
+    #        queue.put(False)
+    # musicArtwork.configure(image = img)
     artist = trackInfo['artist']
-    musicTitle.config(text = title + " - " + artist)
-    musicPosition.config(text = trackInfo['position'] + ' - ' + trackInfo['duration'])
+    # musicTitle.config(text = title + " - " + artist)
+    queue.put(title + " - " + artist)
+    # musicPosition.config(text = trackInfo['position'] + ' - ' + trackInfo['duration'])
+    queue.put(trackInfo['position'] + ' - ' + trackInfo['duration'])
     volume = sonos.volume
-    musicVolume.config(text = "Vol: "+str(volume))
-    
-    if musicPlaying:
-        musicPlayPause.config(text = "Pause")
-    else:
-        musicPlayPause.config(text = "Play")
-        musicArtwork.configure(image = None)
-    music.after(2000, getSonosInfo)
+    queue.put("Vol: " + str(volume))
+    # musicVolume.config(text = "Vol: "+str(volume))
+
+
+#    if musicPlaying:
+#        musicPlayPause.config(text = "Pause")
+#    else:
+#        musicPlayPause.config(text = "Play")
+# musicArtwork.configure(image = None)
     
 def sonosPlayPause():
     if musicPlaying:
@@ -542,8 +581,8 @@ musicLabel.pack(fill = 'both', expand = True)
 musicTitle = tk.Label(music, text = "Title", bg = 'black', fg = "white", font = ('Arial', 20), wraplengt=220)
 musicTitle.pack(fill = 'both', expand = True)
 
-musicArtwork = tk.Label(music)
-musicArtwork.pack(fill = 'both', expand = True)
+#musicArtwork = tk.Label(music)
+#musicArtwork.pack(fill = 'both', expand = True)
 
 musicPosition = tk.Label(music, text = "-", bg = 'black', fg = "white", font = ('Arial', 20))
 musicPosition.pack(fill = 'both', expand = True)
@@ -575,7 +614,7 @@ switchV12()
 tick()
 updateDoor()
 clockDisplay.after(1000, updateWeather)
-music.after(2000, getSonosInfo)
+music.after(2000, callgetSonosInfo)
 
 
 window.mainloop()

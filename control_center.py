@@ -86,7 +86,7 @@ def callgetSonosInfo():
     if not queue.empty():
         musicPlaying = queue.get()
 #    if not queue.empty():
-#        dat = qu eue.get()
+#        dat = queue.get()
 #        if not dat:
 #            musicPreviousTitle = dat[0]
 #            musicArtwork.configure(image = dat[1])
@@ -127,13 +127,13 @@ def getSonosInfo(queue):
     volume = sonos.volume
     queue.put("Vol: "+str(volume))
     #musicVolume.config(text = "Vol: "+str(volume))
-    
+
 #    if musicPlaying:
 #        musicPlayPause.config(text = "Pause")
 #    else:
 #        musicPlayPause.config(text = "Play")
         #musicArtwork.configure(image = None)
-    
+
 def sonosPlayPause():
     if musicPlaying:
         sonos.pause()
