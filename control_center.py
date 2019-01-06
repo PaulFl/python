@@ -46,6 +46,7 @@ v12State = True
 canState = False
 musicPlaying = False
 
+
 def keydown(e):
     key = e.keycode
     if key == 65:
@@ -85,7 +86,7 @@ def callgetSonosInfo():
     if not queue.empty():
         musicPlaying = queue.get()
 #    if not queue.empty():
-#        dat = queue.get()
+#        dat = qu eue.get()
 #        if not dat:
 #            musicPreviousTitle = dat[0]
 #            musicArtwork.configure(image = dat[1])

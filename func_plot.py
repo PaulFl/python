@@ -15,3 +15,5 @@ def funcPlot():
     plt.ylabel("f(x)")
     plt.legend()
     plt.show()
+
+

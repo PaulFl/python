@@ -22,9 +22,9 @@ doorLedPin = 6
 
 
 
-ser = serial.Serial(port='/dev/tty0', timeout = 0)
+#ser = serial.Serial(port='/dev/tty0', timeout = 0)
 
-sonos = SoCo("192.168.0.12")
+sonos = SoCo("192.168.0.230")
 
 img = None
 musicPreviousTitle = ''
@@ -160,17 +160,17 @@ def processLine(line):
                             value=int(line[1:])
                             setDeviceValue(id, value)
     
-def readSerial():
-    global serLine
-    if ser.inWaiting()>0:
-        line = ser.read(ser.inWaiting()).decode()
-        while line.find('\n') != -1:
-            i = line.find('\n')
-            serLine += line[:i-1]
-            processLine(serLine)
-            serLine = ''
-            line = line[i+1:]
-    clockDisplay.after(100, readSerial)
+# def readSerial():
+#     global serLine
+#     if ser.inWaiting()>0:
+#         line = ser.read(ser.inWaiting()).decode()
+#         while line.find('\n') != -1:
+#             i = line.find('\n')
+#             serLine += line[:i-1]
+#             processLine(serLine)
+#             serLine = ''
+#             line = line[i+1:]
+#     clockDisplay.after(100, readSerial)
 
 def setDeviceValue(id, value):
     if id == 5:
@@ -267,8 +267,8 @@ def setDevice(id, state):
             canStatusValue.config(fg = 'white')
             canStatusLabel.config(fg = 'white')
 
-def writeSerial(line):
-    ser.write((line + '\n').encode('utf-8'))
+# def writeSerial(line):
+#     ser.write((line + '\n').encode('utf-8'))
 
 def switchV12():
     global v12State
@@ -282,12 +282,12 @@ def switchV12():
         v12Switch.config(text='OFF', fg = 'black')
         v12Status.config(text = 'ON', fg = 'black')
         v12Label.config(fg = 'black')
-        writeSerial('41')
+        #writeSerial('41')
     else:
         v12Switch.config(text='ON', fg = 'white')
         v12Status.config(text = 'OFF', fg = 'white')
         v12Label.config(fg = 'white')
-        writeSerial('40')
+        #writeSerial('40')
 
 def switchDesktop():
     global desktopState
@@ -301,12 +301,12 @@ def switchDesktop():
         desktopSwitch.config(text='OFF', fg = 'black')
         desktopStatus.config(text = 'ON', fg = 'black')
         desktopLabel.config(fg = 'black')
-        writeSerial('11')
+        #writeSerial('11')
     else:
         desktopSwitch.config(text='ON', fg = "white")
         desktopStatus.config(text = 'OFF', fg = 'white')
         desktopLabel.config(fg = 'white')
-        writeSerial('10')
+        #writeSerial('10')
         
 def switchDoor():
     global doorState
@@ -338,12 +338,12 @@ def switchMg():
         mgSwitch.config(text='OFF', fg = 'black')
         mgStatus.config(text = 'ON', fg = 'black')
         mgLabel.config(fg = 'black')
-        writeSerial('21')
+        #writeSerial('21')
     else:
         mgSwitch.config(text='ON', fg = 'white')
         mgStatus.config(text = 'OFF', fg = 'white')
         mgLabel.config(fg = 'white')
-        writeSerial('20')
+        #writeSerial('20')
 
 def switchLed():
     global ledState
@@ -357,12 +357,12 @@ def switchLed():
         ledSwitch.config(text='OFF', fg = 'black')
         ledStatus.config(text = 'ON', fg = 'black')
         ledLabel.config(fg = 'black')
-        writeSerial('31')
+        #writeSerial('31')
     else:
         ledSwitch.config(text='ON', fg = 'white')
         ledStatus.config(text = 'OFF', fg = 'white')
         ledLabel.config(fg = 'white')
-        writeSerial('30')
+        #writeSerial('30')
 
 def switchDoorLed():
     global doorLedState
@@ -571,7 +571,7 @@ window.bind('<KeyPress>', keydown)
 switchDesktop()
 switchMg()
 switchV12()
-readSerial()
+#readSerial()
 tick()
 updateDoor()
 clockDisplay.after(1000, updateWeather)
