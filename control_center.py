@@ -13,11 +13,11 @@ import urllib
 from multiprocessing import Process, Queue
 
 font_size_main_categories = 50
-font_size_io = 25
+font_size_io = 28
 font_size_music = 24
 font_size_hour = 72
-font_size_date = 45
-font_size_weather = 40
+font_size_date = 47
+font_size_weather = 42
 
 gpio.setmode(gpio.BCM)
 gpio.setwarnings(0)
@@ -505,7 +505,7 @@ desktopSwitch.pack(fill='both', expand = True)
 mg = tk.Frame(lights, bg = 'green')
 mg.pack(fill='both', expand = True)
 
-mgLabel = tk.Label(mg, text = "Magnifying glass", bg = 'green', font=('Arial', font_size_io))
+mgLabel = tk.Label(mg, text = "MG", bg = 'green', font=('Arial', font_size_io))
 mgLabel.pack(fill='both', expand = True)
 
 mgStatus = tk.Label(mg, text = 'ON', bg = 'green', font=('Arial', font_size_io))
@@ -620,7 +620,7 @@ musicTitle.pack(fill = 'both', expand = True)
 musicPosition = tk.Label(music, text = "-", bg = 'black', fg = "white", font = ('Arial', font_size_music))
 musicPosition.pack(fill = 'both', expand = True)
 
-musicVolume = tk.Label(music, text = "Vol: ", bg = 'black', fg = 'white', font = ('Arial', font_size_music + 5))
+musicVolume = tk.Label(music, text = "Vol: ", bg = 'black', fg = 'white', font = ('Arial', font_size_music + 8))
 musicVolume.pack(fill = 'both', expand = True)
 
 musicControls = tk.Frame(music, bg = 'black')
