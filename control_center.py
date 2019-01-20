@@ -14,10 +14,10 @@ from multiprocessing import Process, Queue
 
 font_size_main_categories = 50
 font_size_io = 25
-font_size_music = 20
+font_size_music = 26
 font_size_hour = 72
 font_size_date = 45
-font_size_weather = 35
+font_size_weather = 40
 
 gpio.setmode(gpio.BCM)
 gpio.setwarnings(0)
