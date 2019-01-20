@@ -12,12 +12,12 @@ from PIL import Image, ImageTk
 import urllib
 from multiprocessing import Process, Queue
 
-font_size_main_categories = 50
-font_size_io = 28
+font_size_main_categories = 45
+font_size_io = 30
 font_size_music = 24
 font_size_hour = 72
 font_size_date = 47
-font_size_weather = 42
+font_size_weather = 44
 
 gpio.setmode(gpio.BCM)
 gpio.setwarnings(0)
@@ -333,7 +333,7 @@ def setDevice(id, state):
             canStatusValue.config(fg = 'black')
             canStatusLabel.config(fg = 'black')
         else:
-            canStatusStatus.config(text = 'NOT TOUCHED', fg = 'white')
+            canStatusStatus.config(text = '!TOUCHED', fg = 'white')
             canStatusValue.config(fg = 'white')
             canStatusLabel.config(fg = 'white')
 
@@ -617,10 +617,10 @@ musicTitle.pack(fill = 'both', expand = True)
 #musicArtwork = tk.Label(music)
 #musicArtwork.pack(fill = 'both', expand = True)
 
-musicPosition = tk.Label(music, text = "-", bg = 'black', fg = "white", font = ('Arial', font_size_music))
+musicPosition = tk.Label(music, text = "-", bg = 'black', fg = "white", font = ('Arial', font_size_music - 5))
 musicPosition.pack(fill = 'both', expand = True)
 
-musicVolume = tk.Label(music, text = "Vol: ", bg = 'black', fg = 'white', font = ('Arial', font_size_music + 8))
+musicVolume = tk.Label(music, text = "Vol: ", bg = 'black', fg = 'white', font = ('Arial', font_size_music + 10))
 musicVolume.pack(fill = 'both', expand = True)
 
 musicControls = tk.Frame(music, bg = 'black')
