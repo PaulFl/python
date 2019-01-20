@@ -13,11 +13,11 @@ import urllib
 from multiprocessing import Process, Queue
 
 font_size_main_categories = 45
-font_size_io = 30
+font_size_io = 32
 font_size_music = 24
 font_size_hour = 72
 font_size_date = 47
-font_size_weather = 44
+font_size_weather = 45
 
 gpio.setmode(gpio.BCM)
 gpio.setwarnings(0)
@@ -180,7 +180,7 @@ def updateWeather():
     temp = float(r.json()['main']['temp'])
     temp -= 273.15
     temp = round(temp, 1)
-    temperature.config(text = "Temp: " + str(temp)+"°C")
+    temperature.config(text = "T: " + str(temp)+"°C")
     pressureValue = int(r.json()['main']['pressure'])
     pressure.config(text = "P: " + str(pressureValue)+"hPa")
     windValue = float(r.json()['wind']['speed'])
@@ -602,7 +602,7 @@ canStatusBar.pack()
 canStatusValue = tk.Label(canStatus, text = 'NULL', bg = 'red', fg = 'white', font=('Arial', font_size_io))
 canStatusValue.pack(fill = 'both', expand = True)
 
-canStatusStatus = tk.Label(canStatus, text = 'NOT TOUCHED', bg = 'red', fg = 'white', font=('Arial', font_size_io))
+canStatusStatus = tk.Label(canStatus, text = '!TOUCHED', bg = 'red', fg = 'white', font=('Arial', font_size_io))
 canStatusStatus.pack(fill = 'both', expand = True)
 
 music = tk.Frame(sensors, bg = 'black')
@@ -617,10 +617,10 @@ musicTitle.pack(fill = 'both', expand = True)
 #musicArtwork = tk.Label(music)
 #musicArtwork.pack(fill = 'both', expand = True)
 
-musicPosition = tk.Label(music, text = "-", bg = 'black', fg = "white", font = ('Arial', font_size_music - 5))
+musicPosition = tk.Label(music, text = "-", bg = 'black', fg = "white", font = ('Arial', font_size_music - 3))
 musicPosition.pack(fill = 'both', expand = True)
 
-musicVolume = tk.Label(music, text = "Vol: ", bg = 'black', fg = 'white', font = ('Arial', font_size_music + 10))
+musicVolume = tk.Label(music, text = "Vol: ", bg = 'black', fg = 'white', font = ('Arial', font_size_music + 13))
 musicVolume.pack(fill = 'both', expand = True)
 
 musicControls = tk.Frame(music, bg = 'black')
