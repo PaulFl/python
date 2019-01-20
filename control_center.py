@@ -12,6 +12,13 @@ from PIL import Image, ImageTk
 import urllib
 from multiprocessing import Process, Queue
 
+font_size_main_categories = 50
+font_size_io = 25
+font_size_music = 20
+font_size_hour = 72
+font_size_date = 45
+font_size_weather = 35
+
 gpio.setmode(gpio.BCM)
 gpio.setwarnings(0)
 
@@ -139,6 +146,7 @@ def sonosPlayPause():
         sonos.pause()
     else:
         sonos.play()
+
 
 def setDisplayBacklight(state):
     gpio.setup(k1pin, gpio.OUT)
@@ -460,171 +468,171 @@ pwindow.add(sensors, stretch = 'always')
 clock = tk.Frame(window)
 pwindow.add(clock)
 
-lightsLabel = tk.Label(lights, text = 'Outputs', font=('Arial', 50))
+lightsLabel = tk.Label(lights, text = 'Outputs', font=('Arial', font_size_main_categories))
 lightsLabel.pack(fill='both', expand = False)
 
-sensorsLabel = tk.Label(sensors, text = 'Sensors', font=('Arial', 50))
+sensorsLabel = tk.Label(sensors, text = 'Sensors', font=('Arial', font_size_main_categories))
 sensorsLabel.pack(fill = 'both', expand = False)
 
-clockLabel = tk.Label(clock, text = 'Control', font=('Arial', 50))
+clockLabel = tk.Label(clock, text = 'Control', font=('Arial', font_size_main_categories))
 clockLabel.pack(fill = 'both', expand = False)
 
 v12 = tk.Frame(lights, bg = 'green')
 v12.pack(fill='both', expand = True)
 
-v12Label = tk.Label(v12, text = "12V Output", bg = 'green', font=('Arial', 25))
+v12Label = tk.Label(v12, text = "12V Output", bg = 'green', font=('Arial', font_size_io))
 v12Label.pack(fill='both', expand = True)
 
-v12Status = tk.Label(v12, text = 'ON', bg = 'green', font=('Arial', 25))
+v12Status = tk.Label(v12, text = 'ON', bg = 'green', font=('Arial', font_size_io))
 v12Status.pack(fill='both', expand = True)
 
-v12Switch = tk.Button(v12, text = 'OFF', bg = 'green', command=switchV12, font=('Arial', 25))
+v12Switch = tk.Button(v12, text = 'OFF', bg = 'green', command=switchV12, font=('Arial', font_size_io))
 v12Switch.pack(fill='both', expand = True)
 
 
 desktop = tk.Frame(lights, bg = 'green')
 desktop.pack(fill='both', expand = True)
 
-desktopLabel = tk.Label(desktop, text = "Desktop", bg = 'green', font=('Arial', 25))
+desktopLabel = tk.Label(desktop, text = "Desktop", bg = 'green', font=('Arial', font_size_io))
 desktopLabel.pack(fill='both', expand = True)
 
-desktopStatus = tk.Label(desktop, text = 'ON', bg = 'green', font=('Arial', 25))
+desktopStatus = tk.Label(desktop, text = 'ON', bg = 'green', font=('Arial', font_size_io))
 desktopStatus.pack(fill='both', expand = True)
 
-desktopSwitch = tk.Button(desktop, text = 'OFF', bg = 'green', command=switchDesktop, font=('Arial', 25))
+desktopSwitch = tk.Button(desktop, text = 'OFF', bg = 'green', command=switchDesktop, font=('Arial', font_size_io))
 desktopSwitch.pack(fill='both', expand = True)
 
 mg = tk.Frame(lights, bg = 'green')
 mg.pack(fill='both', expand = True)
 
-mgLabel = tk.Label(mg, text = "Magnifying glass", bg = 'green', font=('Arial', 25))
+mgLabel = tk.Label(mg, text = "Magnifying glass", bg = 'green', font=('Arial', font_size_io))
 mgLabel.pack(fill='both', expand = True)
 
-mgStatus = tk.Label(mg, text = 'ON', bg = 'green', font=('Arial', 25))
+mgStatus = tk.Label(mg, text = 'ON', bg = 'green', font=('Arial', font_size_io))
 mgStatus.pack(fill='both', expand = True)
 
-mgSwitch = tk.Button(mg, text = 'OFF', bg = 'green', command=switchMg, font=('Arial', 25))
+mgSwitch = tk.Button(mg, text = 'OFF', bg = 'green', command=switchMg, font=('Arial', font_size_io))
 mgSwitch.pack(fill='both', expand = True)
 
 led = tk.Frame(lights, bg = 'green')
 led.pack(fill='both', expand = True)
 
-ledLabel = tk.Label(led, text = "LEDs", bg = 'green', font=('Arial', 25))
+ledLabel = tk.Label(led, text = "LEDs", bg = 'green', font=('Arial', font_size_io))
 ledLabel.pack(fill='both', expand = True)
 
-ledStatus = tk.Label(led, text = 'ON', bg = 'green', font=('Arial', 25))
+ledStatus = tk.Label(led, text = 'ON', bg = 'green', font=('Arial', font_size_io))
 ledStatus.pack(fill='both', expand = True)
 
 ledSliders = tk.Frame(led, bg = 'green')
 ledSliders.pack(fill = 'both', expand = True)
 
 redValue = tk.DoubleVar()
-ledRedSlider = tk.Scale(ledSliders, variable = redValue, bg = 'red', font=('Arial', 25))
+ledRedSlider = tk.Scale(ledSliders, variable = redValue, bg = 'red', font=('Arial', font_size_io))
 ledRedSlider.config(from_ = 255, to = 0)
 ledRedSlider.pack(side = 'left', fill = 'both', expand = True)
 
 greenValue = tk.DoubleVar()
-ledGreenSlider = tk.Scale(ledSliders, variable = greenValue, bg = 'green', font=('Arial', 25))
+ledGreenSlider = tk.Scale(ledSliders, variable = greenValue, bg = 'green', font=('Arial', font_size_io))
 ledGreenSlider.config(from_ = 255, to = 0)
 ledGreenSlider.pack(side = 'left', fill = 'both', expand = True)
 
 blueValue = tk.DoubleVar()
-ledBlueSlider = tk.Scale(ledSliders, variable = blueValue, bg = 'blue', font=('Arial', 25))
+ledBlueSlider = tk.Scale(ledSliders, variable = blueValue, bg = 'blue', font=('Arial', font_size_io))
 ledBlueSlider.config(from_ = 255, to = 0)
 ledBlueSlider.pack(side = 'left', fill = 'both', expand = True)
 
 
-ledSwitch = tk.Button(led, text = 'OFF', bg = 'green', command=switchLed, font=('Arial', 25))
+ledSwitch = tk.Button(led, text = 'OFF', bg = 'green', command=switchLed, font=('Arial', font_size_io))
 ledSwitch.pack(fill='both', expand = True)
 
 doorLed = tk.Frame(lights, bg = "green")
 doorLed.pack(fill = 'both', expand = True)
 
-doorLedLabel = tk.Label(doorLed, text = "Door LED", bg = 'green', font=('Arial', 25))
+doorLedLabel = tk.Label(doorLed, text = "Door LED", bg = 'green', font=('Arial', font_size_io))
 doorLedLabel.pack(fill = 'both', expand = True)
 
-doorLedStatus = tk.Label(doorLed, text = 'ON', bg = 'green', font=('Arial', 25))
+doorLedStatus = tk.Label(doorLed, text = 'ON', bg = 'green', font=('Arial', font_size_io))
 doorLedStatus.pack(fill = 'both', expand = True)
 
-doorLedSwitch = tk.Button(doorLed, text = 'OFF', bg = 'green', command=switchDoorLed, font=('Arial', 25))
+doorLedSwitch = tk.Button(doorLed, text = 'OFF', bg = 'green', command=switchDoorLed, font=('Arial', font_size_io))
 doorLedSwitch.pack(fill = 'both', expand = True)
 
-clockDate2 = tk.Label(clock, font=('Arial', 45), fg = 'white', bg = 'black')
+clockDate2 = tk.Label(clock, font=('Arial', font_size_date), fg = 'white', bg = 'black')
 clockDate2.pack(fill = 'both', expand = True)
 
-weatherMain = tk.Label(clock, font = ('Arial', 35), fg = 'white', bg = 'black')
+weatherMain = tk.Label(clock, font = ('Arial', font_size_weather), fg = 'white', bg = 'black')
 weatherMain.pack(fill = 'both', expand = True)
 
-temperature = tk.Label(clock, font = ('Arial', 35), fg = 'white', bg = 'black')
+temperature = tk.Label(clock, font = ('Arial', font_size_weather), fg = 'white', bg = 'black')
 temperature.pack(fill = 'both', expand = True)
 
-pressure = tk.Label(clock, font = ('Arial', 35), fg = 'white', bg = 'black')
+pressure = tk.Label(clock, font = ('Arial', font_size_weather), fg = 'white', bg = 'black')
 pressure.pack(fill = 'both', expand = True)
 
-wind = tk.Label(clock, font = ('Arial', 35), fg = 'white', bg = 'black')
+wind = tk.Label(clock, font = ('Arial', font_size_weather), fg = 'white', bg = 'black')
 wind.pack(fill = 'both', expand = True)
 
-sun = tk.Label(clock, font = ('Arial', 35), fg = 'white', bg = 'black')
+sun = tk.Label(clock, font = ('Arial', font_size_weather), fg = 'white', bg = 'black')
 sun.pack(fill = 'both', expand = True)
 
-clockDate1 = tk.Label(clock, font=('Arial', 72), fg = 'white', bg = 'black')
+clockDate1 = tk.Label(clock, font=('Arial', font_size_hour), fg = 'white', bg = 'black')
 clockDate1.pack(fill = 'both', expand = True)
 
-clockDisplay = tk.Label(clock, font=('Arial', 72), fg = 'white', bg = 'black')
+clockDisplay = tk.Label(clock, font=('Arial', font_size_hour), fg = 'white', bg = 'black')
 clockDisplay.pack(fill='both', expand= True)
 
 doorPosition = tk.Frame(sensors, bg = 'green')
 doorPosition.pack(fill = 'both', expand = True)
 
-doorPositionLabel = tk.Label(doorPosition, text = "Door status", bg = 'green', font=('Arial', 25))
+doorPositionLabel = tk.Label(doorPosition, text = "Door status", bg = 'green', font=('Arial', font_size_io))
 doorPositionLabel.pack(fill = 'both', expand = True)
 
-doorPositionStatus = tk.Label(doorPosition, text = 'OPEN', bg = 'green', font=('Arial', 25))
+doorPositionStatus = tk.Label(doorPosition, text = 'OPEN', bg = 'green', font=('Arial', font_size_io))
 doorPositionStatus.pack(fill = 'both', expand = True)
 
 canStatus = tk.Frame(sensors, bg = 'red')
 canStatus.pack(fill = 'both', expand = True)
 
-canStatusLabel = tk.Label(canStatus, text = "Can status", bg = 'red', fg = 'white', font=('Arial', 25))
+canStatusLabel = tk.Label(canStatus, text = "Can status", bg = 'red', fg = 'white', font=('Arial', font_size_io))
 canStatusLabel.pack(fill = 'both', expand = True)
 
-canStatusBar = ttk.Progressbar(canStatus, variable = canBarValue, maximum = 30000, orient = 'vertical')
+canStatusBar = ttk.Progressbar(canStatus, variable=canBarValue, maximum=30000, orient = 'vertical')
 canStatusBar.pack()
 
-canStatusValue = tk.Label(canStatus, text = 'NULL', bg = 'red', fg = 'white', font=('Arial', 25))
+canStatusValue = tk.Label(canStatus, text = 'NULL', bg = 'red', fg = 'white', font=('Arial', font_size_io))
 canStatusValue.pack(fill = 'both', expand = True)
 
-canStatusStatus = tk.Label(canStatus, text = 'NOT TOUCHED', bg = 'red', fg = 'white', font=('Arial', 25))
+canStatusStatus = tk.Label(canStatus, text = 'NOT TOUCHED', bg = 'red', fg = 'white', font=('Arial', font_size_io))
 canStatusStatus.pack(fill = 'both', expand = True)
 
 music = tk.Frame(sensors, bg = 'black')
 music.pack(fill = 'both', expand = True)
 
-musicLabel = tk.Label(music, text = "Music", bg = 'black', fg = "white", font=('Arial', 25))
+musicLabel = tk.Label(music, text = "Music", bg = 'black', fg = "white", font=('Arial', font_size_io))
 musicLabel.pack(fill = 'both', expand = True)
 
-musicTitle = tk.Label(music, text = "Title", bg = 'black', fg = "white", font = ('Arial', 20), wraplengt=220)
+musicTitle = tk.Label(music, text = "Title", bg = 'black', fg = "white", font = ('Arial', font_size_music), wraplengt=220)
 musicTitle.pack(fill = 'both', expand = True)
 
 #musicArtwork = tk.Label(music)
 #musicArtwork.pack(fill = 'both', expand = True)
 
-musicPosition = tk.Label(music, text = "-", bg = 'black', fg = "white", font = ('Arial', 20))
+musicPosition = tk.Label(music, text = "-", bg = 'black', fg = "white", font = ('Arial', font_size_music))
 musicPosition.pack(fill = 'both', expand = True)
 
-musicVolume = tk.Label(music, text = "Vol: ", bg = 'black', fg = 'white', font = ('Arial', 20))
+musicVolume = tk.Label(music, text = "Vol: ", bg = 'black', fg = 'white', font = ('Arial', font_size_music))
 musicVolume.pack(fill = 'both', expand = True)
 
 musicControls = tk.Frame(music, bg = 'black')
 musicControls.pack(fill = 'both', expand = True)
 
-musicPrevious = tk.Button(musicControls, text = "<<", bg = "black", fg = "white", font = ('Arial', 25), command = sonos.previous)
+musicPrevious = tk.Button(musicControls, text = "<<", bg = "black", fg = "white", font = ('Arial', font_size_io), command = sonos.previous)
 musicPrevious.pack(side = 'left', fill = 'both', expand = True)
 
-musicPlayPause = tk.Button(musicControls, text = "Play", bg = 'black', fg = "white", font = ('Arial', 25), command = sonosPlayPause)
+musicPlayPause = tk.Button(musicControls, text = "Play", bg = 'black', fg = "white", font = ('Arial', font_size_io), command = sonosPlayPause)
 musicPlayPause.pack(side = 'left', fill = 'both', expand = True)
 
-musicNext = tk.Button(musicControls, text = ">>", bg = "black", fg = "white", font = ('Arial', 25), command = sonos.next)
+musicNext = tk.Button(musicControls, text = ">>", bg = "black", fg = "white", font = ('Arial', font_size_io), command = sonos.next)
 musicNext.pack(side = "left", fill = "both", expand = True)
 
 

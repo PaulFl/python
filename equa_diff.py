@@ -13,4 +13,4 @@ def capa(y):
     return(y)
 
 def harmonique(y):
-    return(np.array([y[1],-y[0]]))
+    return np.array([y[1], -y[0]])
