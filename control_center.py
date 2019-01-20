@@ -14,7 +14,7 @@ from multiprocessing import Process, Queue
 
 font_size_main_categories = 50
 font_size_io = 25
-font_size_music = 26
+font_size_music = 24
 font_size_hour = 72
 font_size_date = 45
 font_size_weather = 40
@@ -182,7 +182,7 @@ def updateWeather():
     temp = round(temp, 1)
     temperature.config(text = "Temp: " + str(temp)+"°C")
     pressureValue = int(r.json()['main']['pressure'])
-    pressure.config(text = "Press: " + str(pressureValue)+"hPa")
+    pressure.config(text = "P: " + str(pressureValue)+"hPa")
     windValue = float(r.json()['wind']['speed'])
     windValue *= 1.94384
     windValue = round(windValue, 1)
@@ -620,7 +620,7 @@ musicTitle.pack(fill = 'both', expand = True)
 musicPosition = tk.Label(music, text = "-", bg = 'black', fg = "white", font = ('Arial', font_size_music))
 musicPosition.pack(fill = 'both', expand = True)
 
-musicVolume = tk.Label(music, text = "Vol: ", bg = 'black', fg = 'white', font = ('Arial', font_size_music))
+musicVolume = tk.Label(music, text = "Vol: ", bg = 'black', fg = 'white', font = ('Arial', font_size_music + 5))
 musicVolume.pack(fill = 'both', expand = True)
 
 musicControls = tk.Frame(music, bg = 'black')

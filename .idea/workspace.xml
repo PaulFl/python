@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="747df85e-aa9c-460a-a615-a90b96a6b641" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/pfleury.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/casino.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oc_tutorial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/control_center.py" beforeDir="false" afterPath="$PROJECT_DIR$/control_center.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/equa_diff.py" beforeDir="false" afterPath="$PROJECT_DIR$/equa_diff.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,8 +25,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/control_center.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-736">
-              <caret line="574" column="56" selection-start-line="574" selection-start-column="56" selection-end-line="574" selection-end-column="56" />
+            <state relative-caret-position="227">
+              <caret line="622" column="107" selection-start-line="622" selection-start-column="107" selection-end-line="622" selection-end-column="107" />
               <folding>
                 <element signature="e#20#40#0" expanded="true" />
               </folding>
@@ -54,6 +48,8 @@
       <find>ser</find>
       <find>qu</find>
       <find>artwor</find>
+      <find>press</find>
+      <find>volume</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -330,7 +326,21 @@
       <option name="project" value="LOCAL" />
       <updated>1547671519648</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="added parametric font sizes">
+      <created>1547999021067</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1547999021067</updated>
+    </task>
+    <task id="LOCAL-00004" summary="changed font sizes">
+      <created>1547999259280</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1547999259280</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TodoView">
@@ -427,7 +437,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="working no gpio version" />
     <MESSAGE value="up" />
-    <option name="LAST_COMMIT_MESSAGE" value="up" />
+    <MESSAGE value="added parametric font sizes" />
+    <MESSAGE value="changed font sizes" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed font sizes" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/func_plot.py">
@@ -521,8 +533,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/control_center.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-736">
-          <caret line="574" column="56" selection-start-line="574" selection-start-column="56" selection-end-line="574" selection-end-column="56" />
+        <state relative-caret-position="227">
+          <caret line="622" column="107" selection-start-line="622" selection-start-column="107" selection-end-line="622" selection-end-column="107" />
           <folding>
             <element signature="e#20#40#0" expanded="true" />
           </folding>
