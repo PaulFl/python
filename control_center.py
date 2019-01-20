@@ -104,9 +104,9 @@ def callgetSonosInfo():
     if not queue.empty():
         musicVolume.config(text = queue.get())
     if musicPlaying:
-        musicPlayPause.config(text = "Pause")
+        musicPlayPause.config(text = "||")
     else:
-        musicPlayPause.config(text = "Play")
+        musicPlayPause.config(text = ">")
     music.after(2000, callgetSonosInfo)
 
 def getSonosInfo(queue):

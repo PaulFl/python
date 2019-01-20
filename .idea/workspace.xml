@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="747df85e-aa9c-460a-a615-a90b96a6b641" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/control_center.py" beforeDir="false" afterPath="$PROJECT_DIR$/control_center.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,8 +24,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/control_center.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="354">
-              <caret line="340" column="44" lean-forward="true" selection-start-line="340" selection-start-column="44" selection-end-line="340" selection-end-column="44" />
+            <state relative-caret-position="255">
+              <caret line="15" column="17" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
               <folding>
                 <element signature="e#20#40#0" expanded="true" />
               </folding>
@@ -50,6 +49,10 @@
       <find>artwor</find>
       <find>press</find>
       <find>volume</find>
+      <find>progress</find>
+      <find>temp</find>
+      <find>touched</find>
+      <find>position</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -354,7 +357,14 @@
       <option name="project" value="LOCAL" />
       <updated>1547999589739</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="changed font sizes">
+      <created>1547999767218</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1547999767219</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TodoView">
@@ -547,8 +557,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/control_center.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="340" column="44" lean-forward="true" selection-start-line="340" selection-start-column="44" selection-end-line="340" selection-end-column="44" />
+        <state relative-caret-position="255">
+          <caret line="15" column="17" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
           <folding>
             <element signature="e#20#40#0" expanded="true" />
           </folding>
