@@ -36,6 +36,7 @@ def switchCallback(channel):
             system('pkill -f uxterm')
             system('pkill -f chromium-browser')
             system('pkill -f start_control_center.sh')
+            system('pkill -f start_control_center_octoprint.sh')
         
 
 gpio.add_event_detect(switchPin, gpio.BOTH, callback=switchCallback, bouncetime=300)
