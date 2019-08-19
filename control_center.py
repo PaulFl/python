@@ -12,6 +12,10 @@ from PIL import Image, ImageTk
 import urllib
 from multiprocessing import Process, Queue
 
+desktopStatusFile = "/var/www/html/gpio/desktopStatus.txt"
+mgStatusFile = "/var/www/html/gpio/mgStatus.txt"
+ledStatusFile = "/var/www/html/gpio/ledStatus.txt"
+
 font_size_main_categories = 45
 font_size_io = 32
 font_size_music = 24
@@ -264,14 +268,18 @@ def setDevice(id, state):
                 widget.config(bg = 'green')
             else:
                 widget.config(bg = 'red')
+        desktopStatusFileTmp = open(desktopStatusFile, "w")
         if desktopState:
             desktopSwitch.config(text = 'OFF', fg = 'black')
             desktopStatus.config(text = 'ON', fg = 'black')
             desktopLabel.config(fg = 'black')
+            desktopStatusFileTmp.write("1")
         else:
             desktopSwitch.config(text='ON', fg = 'white')
             desktopStatus.config(text = 'OFF', fg = 'white')
             desktopLabel.config(fg = 'white')
+            desktopStatusFileTmp.write("0")
+        desktopStatusFileTmp.close()
     elif id == 2:
         global mgState
         mgState = state
@@ -280,14 +288,18 @@ def setDevice(id, state):
                 widget.config(bg = 'green')
             else:
                 widget.config(bg = 'red')
+        mgStatusFileTmp = open(mgStatusFile, "w")
         if mgState:
             mgSwitch.config(text = 'OFF', fg = 'black')
             mgStatus.config(text = 'ON', fg = 'black')
             mgLabel.config(fg = 'black')
+            mgStatusFileTmp.write("1")
         else:
             mgSwitch.config(text='ON', fg = 'white')
             mgStatus.config(text = 'OFF', fg = 'white')
             mgLabel.config(fg = 'white')
+            mgStatusFileTmp.write("0")
+        mgStatusFileTmp.close()
     elif id == 3:
         global ledState
         ledState = state
@@ -296,14 +308,18 @@ def setDevice(id, state):
                 widget.config(bg = 'green')
             else:
                 widget.config(bg = 'red')
+        ledStatusFileTmp = open(ledStatusFile, "w")
         if ledState:
             ledSwitch.config(text='OFF', fg = 'black')
             ledStatus.config(text = 'ON', fg = 'black')
             ledLabel.config(fg = 'black')
+            ledStatusFileTmp.write("1")
         else:
             ledSwitch.config(text='ON', fg = 'white')
             ledStatus.config(text = 'OFF', fg = 'white')
             ledLabel.config(fg = 'white')
+            ledStatusFileTmp.write("0")
+        ledStatusFileTmp.close()
     elif id == 4:
         global v12State
         v12State = state
