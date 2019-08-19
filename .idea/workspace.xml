@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="747df85e-aa9c-460a-a615-a90b96a6b641" name="Default Changelist" comment="play pause button text changed to icons">
-      <change afterPath="$PROJECT_DIR$/OctoPy/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bode.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oc_dictionnary.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/python.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/python.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laser_gcode_generator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/laser_gcode_generator/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/newton.py" beforeDir="false" afterPath="$PROJECT_DIR$/newton.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PyQt5_test/.idea/PyQt5_test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/PyQt5_test/.idea/PyQt5_test.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PyQt5_test/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/PyQt5_test/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,7 +16,44 @@
     <favorites_list name="python" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PyQt5_test/pyqt5_test.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="10" column="21" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/control_center_no_gpio.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="252">
+              <caret line="16" column="10" lean-forward="true" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
+              <folding>
+                <element signature="e#20#40#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/control_center.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="566">
+              <caret line="277" column="56" selection-start-line="277" selection-start-column="56" selection-end-line="277" selection-end-column="56" />
+              <folding>
+                <element signature="e#20#40#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -42,6 +74,7 @@
       <find>touched</find>
       <find>position</find>
       <find>pause</find>
+      <find>desktopSta</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -101,7 +134,17 @@
             <path>
               <item name="python" type="b2602c69:ProjectViewProjectNode" />
               <item name="python" type="462c0819:PsiDirectoryNode" />
+              <item name="PyQt5_test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="python" type="b2602c69:ProjectViewProjectNode" />
+              <item name="python" type="462c0819:PsiDirectoryNode" />
               <item name="algos_tri.py" type="8704e2dd:PyFileNode" />
+            </path>
+            <path>
+              <item name="python" type="b2602c69:ProjectViewProjectNode" />
+              <item name="python" type="462c0819:PsiDirectoryNode" />
+              <item name="control_center.py" type="8704e2dd:PyFileNode" />
             </path>
             <path>
               <item name="python" type="b2602c69:ProjectViewProjectNode" />
@@ -153,7 +196,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.algos_tri">
+  <component name="RunManager" selected="Python.control_center_no_gpio">
     <configuration name="algos_tri" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="python" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -175,19 +218,16 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="bode" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="control_center_no_gpio" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="python" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bode.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/control_center_no_gpio.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -217,27 +257,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="oc_dictionnary" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="python" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$USER_HOME$/Downloads/pySyLiC-0.39.0/src" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$USER_HOME$/Downloads/pySyLiC-0.39.0/src/oc_dictionnary.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="oc_tutorial" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="python" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -251,6 +270,24 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/oc_tutorial.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pyqt5_test" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="python" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/PyQt5_test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/PyQt5_test/pyqt5_test.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -281,20 +318,20 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.algos_tri" />
-      <item itemvalue="Python.bode" />
       <item itemvalue="Python.dm" />
-      <item itemvalue="Python.oc_dictionnary" />
+      <item itemvalue="Python.pyqt5_test" />
+      <item itemvalue="Python.algos_tri" />
       <item itemvalue="Python.oc_tutorial" />
       <item itemvalue="Python.python_maths" />
+      <item itemvalue="Python.control_center_no_gpio" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.algos_tri" />
-        <item itemvalue="Python.algos_tri" />
-        <item itemvalue="Python.bode" />
-        <item itemvalue="Python.bode" />
-        <item itemvalue="Python.bode" />
+        <item itemvalue="Python.control_center_no_gpio" />
+        <item itemvalue="Python.control_center_no_gpio" />
+        <item itemvalue="Python.control_center_no_gpio" />
+        <item itemvalue="Python.pyqt5_test" />
+        <item itemvalue="Python.pyqt5_test" />
       </list>
     </recent_temporary>
   </component>
@@ -394,11 +431,11 @@
       <window_info id="Favorites" order="0" sideWeight="0.6375909" side_tool="true" weight="0.11619283" />
       <window_info content_ui="combo" id="Project" order="1" sideWeight="0.7375" visible="true" weight="0.15822002" />
       <window_info id="Structure" order="2" sideWeight="0.2625" side_tool="true" weight="0.15451175" />
-      <window_info anchor="bottom" id="Terminal" order="0" sideWeight="0.49969116" weight="0.3281412" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="0" sideWeight="0.49969116" visible="true" weight="0.3281412" />
       <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.5012361" side_tool="true" weight="0.46209762" />
       <window_info anchor="bottom" id="Message" order="2" />
       <window_info anchor="bottom" id="Find" order="3" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="4" sideWeight="0.49876392" visible="true" weight="0.26272067" />
+      <window_info anchor="bottom" id="Python Console" order="4" sideWeight="0.49876392" weight="0.26272067" />
       <window_info anchor="bottom" id="Version Control" order="5" weight="0.17030114" />
       <window_info anchor="bottom" id="Run" order="6" weight="0.26644737" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.3991228" />
@@ -570,16 +607,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/control_center.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1241">
-          <caret line="83" column="4" selection-start-line="83" selection-start-column="4" selection-end-line="83" selection-end-column="4" />
-          <folding>
-            <element signature="e#20#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/equa_diff.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -604,20 +631,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/control_center_no_gpio.py">
+    <entry file="file://$PROJECT_DIR$/algos_tri.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="45" column="24" selection-start-line="45" selection-start-column="24" selection-end-line="45" selection-end-column="24" />
+        <state relative-caret-position="204">
+          <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/control_center.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="566">
+          <caret line="277" column="56" selection-start-line="277" selection-start-column="56" selection-end-line="277" selection-end-column="56" />
           <folding>
             <element signature="e#20#40#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/algos_tri.py">
+    <entry file="file://$PROJECT_DIR$/PyQt5_test/pyqt5_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
+        <state relative-caret-position="170">
+          <caret line="10" column="21" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/control_center_no_gpio.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="16" column="10" lean-forward="true" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
+          <folding>
+            <element signature="e#20#40#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
