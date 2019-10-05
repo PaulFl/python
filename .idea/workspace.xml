@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="747df85e-aa9c-460a-a615-a90b96a6b641" name="Default Changelist" comment="play pause button text changed to icons">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PyQt5_test/.idea/PyQt5_test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/PyQt5_test/.idea/PyQt5_test.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PyQt5_test/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/PyQt5_test/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,8 +30,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/control_center_no_gpio.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="16" column="10" lean-forward="true" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
+            <state relative-caret-position="527">
+              <caret line="31" selection-start-line="31" selection-end-line="31" />
               <folding>
                 <element signature="e#20#40#0" expanded="true" />
               </folding>
@@ -44,8 +42,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/control_center.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="566">
-              <caret line="277" column="56" selection-start-line="277" selection-start-column="56" selection-end-line="277" selection-end-column="56" />
+            <state relative-caret-position="4675">
+              <caret line="285" column="56" selection-start-line="285" selection-start-column="56" selection-end-line="285" selection-end-column="56" />
               <folding>
                 <element signature="e#20#40#0" expanded="true" />
               </folding>
@@ -282,6 +280,9 @@
       <module name="python" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/PyQt5_test" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -330,7 +331,7 @@
         <item itemvalue="Python.control_center_no_gpio" />
         <item itemvalue="Python.control_center_no_gpio" />
         <item itemvalue="Python.control_center_no_gpio" />
-        <item itemvalue="Python.pyqt5_test" />
+        <item itemvalue="Python.control_center_no_gpio" />
         <item itemvalue="Python.pyqt5_test" />
       </list>
     </recent_temporary>
@@ -431,11 +432,11 @@
       <window_info id="Favorites" order="0" sideWeight="0.6375909" side_tool="true" weight="0.11619283" />
       <window_info content_ui="combo" id="Project" order="1" sideWeight="0.7375" visible="true" weight="0.15822002" />
       <window_info id="Structure" order="2" sideWeight="0.2625" side_tool="true" weight="0.15451175" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="0" sideWeight="0.49969116" visible="true" weight="0.3281412" />
+      <window_info anchor="bottom" id="Terminal" order="0" sideWeight="0.49969116" weight="0.3281412" />
       <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.5012361" side_tool="true" weight="0.46209762" />
       <window_info anchor="bottom" id="Message" order="2" />
       <window_info anchor="bottom" id="Find" order="3" />
-      <window_info anchor="bottom" id="Python Console" order="4" sideWeight="0.49876392" weight="0.26272067" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="4" sideWeight="0.49876392" visible="true" weight="0.26272067" />
       <window_info anchor="bottom" id="Version Control" order="5" weight="0.17030114" />
       <window_info anchor="bottom" id="Run" order="6" weight="0.26644737" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.3991228" />
@@ -638,16 +639,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/control_center.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="566">
-          <caret line="277" column="56" selection-start-line="277" selection-start-column="56" selection-end-line="277" selection-end-column="56" />
-          <folding>
-            <element signature="e#20#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PyQt5_test/pyqt5_test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -658,10 +649,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/control_center.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4675">
+          <caret line="285" column="56" selection-start-line="285" selection-start-column="56" selection-end-line="285" selection-end-column="56" />
+          <folding>
+            <element signature="e#20#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/control_center_no_gpio.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="16" column="10" lean-forward="true" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
+        <state relative-caret-position="527">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
           <folding>
             <element signature="e#20#40#0" expanded="true" />
           </folding>
