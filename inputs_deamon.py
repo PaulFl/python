@@ -17,7 +17,7 @@ gpio.setup(switchPin3, gpio.IN, pull_up_down=gpio.PUD_UP)
 
 system('export DISPLAY=:0.0')
 system('export LC_CTYPE="en_US.UTF-8"')
-system('sudo /home/paul/Documents/ethernet_leds l0 f1')
+#system('sudo /home/paul/Documents/ethernet_leds l0 f1')
 
 switchState = gpio.input(switchPin)
 switchState2 = gpio.input(switchPin2)
@@ -32,7 +32,7 @@ def switchCallback(channel):
     if gpio.input(switchPin) != switchState:
         switchState = not switchState
         if switchState:
-            system('sudo /home/paul/Documents/ethernet_leds l1 f1')
+            #system('sudo /home/paul/Documents/ethernet_leds l1 f1')
             if 256 == system('pidof Xorg'):
                 system('startx&')
                 sleep(10)
@@ -42,7 +42,7 @@ def switchCallback(channel):
             system('pkill -f chromium-browser')
             system('/home/paul/Documents/start_control_center.sh&')
         else:
-            system('sudo /home/paul/Documents/ethernet_leds l0 f1')
+            #system('sudo /home/paul/Documents/ethernet_leds l0 f1')
             system('pkill -f control_center.py')
             system('pkill -f uxterm')
             system('pkill -f chromium-browser')
@@ -55,7 +55,7 @@ def switchCallback2(channel):
     if gpio.input(switchPin2) != switchState2:
         switchState2 = not switchState2
         if switchState2:
-            system('sudo /home/paul/Documents/ethernet_leds l1 f1')
+            #system('sudo /home/paul/Documents/ethernet_leds l1 f1')
             if 256 == system('pidof Xorg'):
                 system('startx&')
                 sleep(10)
@@ -65,7 +65,7 @@ def switchCallback2(channel):
             system('pkill -f chromium-browser')
             system('/home/paul/Documents/start_control_center_octoprint.sh&')
         else:
-            system('sudo /home/paul/Documents/ethernet_leds l0 f1')
+            #system('sudo /home/paul/Documents/ethernet_leds l0 f1')
             system('pkill -f control_center.py')
             system('pkill -f uxterm')
             system('pkill -f chromium-browser')
